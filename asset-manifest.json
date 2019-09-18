@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/allearsmusic/static/css/main.2cce8147.chunk.css",
-    "main.js": "/allearsmusic/static/js/main.b4816553.chunk.js",
-    "main.js.map": "/allearsmusic/static/js/main.b4816553.chunk.js.map",
+    "main.css": "/allearsmusic/static/css/main.567b45e2.chunk.css",
+    "main.js": "/allearsmusic/static/js/main.a2919172.chunk.js",
+    "main.js.map": "/allearsmusic/static/js/main.a2919172.chunk.js.map",
     "runtime~main.js": "/allearsmusic/static/js/runtime~main.113de918.js",
     "runtime~main.js.map": "/allearsmusic/static/js/runtime~main.113de918.js.map",
-    "static/js/2.bb338d8e.chunk.js": "/allearsmusic/static/js/2.bb338d8e.chunk.js",
-    "static/js/2.bb338d8e.chunk.js.map": "/allearsmusic/static/js/2.bb338d8e.chunk.js.map",
+    "static/js/2.a6515c8f.chunk.js": "/allearsmusic/static/js/2.a6515c8f.chunk.js",
+    "static/js/2.a6515c8f.chunk.js.map": "/allearsmusic/static/js/2.a6515c8f.chunk.js.map",
     "index.html": "/allearsmusic/index.html",
-    "precache-manifest.92e8ccd4ed58f2b69f81c45d4b3e21db.js": "/allearsmusic/precache-manifest.92e8ccd4ed58f2b69f81c45d4b3e21db.js",
+    "precache-manifest.d14fd633cf53980b3d2bf54553441358.js": "/allearsmusic/precache-manifest.d14fd633cf53980b3d2bf54553441358.js",
     "service-worker.js": "/allearsmusic/service-worker.js",
-    "static/css/main.2cce8147.chunk.css.map": "/allearsmusic/static/css/main.2cce8147.chunk.css.map",
-    "static/media/logo.svg": "/allearsmusic/static/media/logo.5d5d9eef.svg"
+    "static/css/main.567b45e2.chunk.css.map": "/allearsmusic/static/css/main.567b45e2.chunk.css.map"
   }
 }
