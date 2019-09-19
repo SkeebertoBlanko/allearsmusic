@@ -1,135 +1,83 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./App.css";
+import ReactDOM from "react-dom";
 import Spotify from "spotify-web-api-js";
 
-const spotifyWebApi = new Spotify();
-
-/* Header/Body/Footer */
-class Head extends Component {
-  render() {
-    return (
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AllEarsMusicHeads</title>
-      </head>
-    );
-  }
+{
+  /*const spotifyWebApi = new Spotify();*/
 }
+const bearerToken =
+  "BQAbkiuf6tVi2viNx86mVAP6Je9NJFaxm3TCRo5R_gXsBe24xn4WXe_XEhCDNllT787PoONP8McQEmDANT4UGOfzYlsWUFYpIc9JjYqiTXCLhqiQpW8SklGTFtLQTKmOvq-7lZ40NI4ftTBZYBMqMv_e";
 
-class Body extends Component {
-  constructor() {
-    super();
-    const params = this.getHashParams();
-    this.state = {
-      loggedIn: params.access_token ? true : false,
-      nowPlaying: {
-        name: "Not Checked",
-        image: ""
+function App() {
+  const [query, setQuery] = useState("eminem");
+  const [artists, setArtists] = useState([]);
+  useEffect(() => {
+    fetchArtists();
+  }, []);
+
+  function fetchArtists() {
+    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist`;
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${bearerToken}`
       }
-    };
-    if (params.access_token) {
-      spotifyWebApi.setAccessToken(params.access_token);
-    }
-  }
-  getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    return hashParams;
-  }
-  getNowPlaying() {
-    spotifyWebApi.getMyCurrentPlaybackState().then(response => {
-      this.setState({
-        nowPlaying: {
-          name: response.item.name,
-          image: response.item.album.images[0].url
-        }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        setArtists(data.artists.items);
       });
-    });
   }
-  render() {
-    return (
-      <body>
-        <Header />
-        {/* <div className="grid-container">
-          <div className="searchconsole">
-            <form
-              role="search"
-              method="post"
-              id="searchform"
-              className="search-form"
-              action="search.php"
-            >
-              <label htmlFor="search">Nach Künstler suchen:</label>
-              <br />
-              <input
-                type="search"
-                name="search"
-                placeholder="Künstler eingeben"
-                results="3"
-              />
-              <input type="submit" className="button-search" value="Suche" />
-            </form>
-          </div>
-          <div className="wikipedia">
-            <p>Wikipedia</p>
-          </div>
-          <div className="picture">
-            <p>Picture</p>
-          </div>
-          <div className="spotify">
-            <p>Spotify</p>
-          </div>
-          <div className="youtube">
-            <p>Youtube</p>
-          </div>
-          <div className="tabs">
-            <p>Tabs</p>
-    </div>*/}
-        <div class="spotify-login">
-          <a href="http://localhost:8888/">
-            <button>Spotify Login</button>
-          </a>
-        </div>
-        <br />
-        <br />
-        <div>Now Playing: {this.state.nowPlaying.name}</div>
-        <div>
-          <img src={this.state.nowPlaying.image} style={{ width: 100 }} />
-        </div>
-        <button onClick={() => this.getNowPlaying()}>Check now Playing</button>
-        {/*</div>*/}
-        <Footer />
-      </body>
-    );
-  }
-}
-class Header extends Body {
-  render() {
-    return <p>Header</p>;
-  }
-}
-class Footer extends Body {
-  render() {
-    return <p>Footer</p>;
-  }
-}
 
-/*** MAIN-FUNCTION ***/
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Head> </Head>
-        <Body> </Body>
-      </>
-    );
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetchArtists();
   }
-}
 
+  return (
+    <div className="min-h-screen bg-green-400 px-10 flex justify-center items-center flex-col">
+      <h1 className="text-5x1 mb-10">Heading</h1>
+      <form className="mb-10 flex" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="p-2 mr-2 rounded shadow-lg w-full"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-blue-100 py-2 px-8 rounded shadow-lg"
+        >
+          Search
+        </button>
+      </form>
+      <div className="flex">
+        {artists.map((artist, index) => {
+          const img = artist.images[0];
+          const imgUrl = img ? img.url : "https://placekitten.com/g/200/200";
+
+          return (
+            console.log(artist) || (
+              <div className="w-1/3 mb-10 text-center p-3" key={index}>
+                {
+                  <img
+                    className="rounded mb-3 text-center mx-auto"
+                    src={imgUrl}
+                    alt={artist.name}
+                    width="400"
+                  />
+                }
+                <h3>{artist.name}</h3>
+              </div>
+            )
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 export default App;
