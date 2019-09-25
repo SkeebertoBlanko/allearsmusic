@@ -1,138 +1,95 @@
-import React, { Component, useEffect, useState } from "react";
-import "./App.css";
-import Spotify from "spotify-web-api-js";
-
-{
-  /*const spotifyWebApi = new Spotify();*/
+/*General CSS*/
+html {
+  box-sizing: border-box;
 }
-const bearerToken =
-  "BQCld1DnEvZ1b1xmaOEClXQVi0W1NIjZVh0kEOxBW6RO117GePMRdNWR_7BkcLxI_icHVBMp6YTBupmWcY316vJbk02PU3tKDGA1S-6rxBn85l6sVfphLlLf3TtavjLqQw6JoD5oWr3gg_EdzR8jajkT";
-
-function Search() {
-  const [artists, setArtists] = useState([]);
-  useEffect(() => {
-    fetchArtists();
-  }, []);
-
-  function fetchArtists() {
-    let url =
-      "https://api.spotify.com/v1/search?q=alice%20in%20chains&type=artist";
-    fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${bearerToken}`
-      }
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(data);
-        setArtists(data.artists.items);
-      });
-  }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  background: lightgrey;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
-/* Header/Body/Footer */
-class Head extends Component {
-  render() {
-    return (
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AllEarsMusicHeads</title>
-      </head>
-    );
-  }
+body > * {
+  text-align: center;
+  vertical-align: middle;
 }
 
-class Body extends Component {
-  render() {
-    return (
-      <body>
-        <Header />
-        {/* <div className="grid-container">
-          <div className="searchconsole">
-            <form
-              role="search"
-              method="post"
-              id="searchform"
-              className="search-form"
-              action="search.php"
-            >
-              <label htmlFor="search">Nach Künstler suchen:</label>
-              <br />
-              <input
-                type="search"
-                name="search"
-                placeholder="Künstler eingeben"
-                results="3"
-              />
-              <input type="submit" className="button-search" value="Suche" />
-            </form>
-          </div>
-          <div className="wikipedia">
-            <p>Wikipedia</p>
-          </div>
-          <div className="picture">
-            <p>Picture</p>
-          </div>
-          <div className="spotify">
-            <p>Spotify</p>
-          </div>
-          <div className="youtube">
-            <p>Youtube</p>
-          </div>
-          <div className="tabs">
-            <p>Tabs</p>
-    </div>*/}
-        <div className="spotify-login">
-          <a href="http://localhost:8888/">
-            <button>Spotify Login</button>
-          </a>
-        </div>
-        <br />
-        <br />
-        {/*<div>
-          {artist.map((artist, index) => (
-            <div key={index}>
-              <img src={artist.images[0].url} alt={artist.name} width="300" />
-              <h3>{artist.name}</h3>
-            </div>
-          ))}
-          </div>*/}
-        {/*} <div>Now Playing: {this.state.nowPlaying.name}</div>
-        <div>
-          <img src={this.state.nowPlaying.image} style={{ width: 100 }} />
-        </div>
-  <button onClick={() => this.getNowPlaying()}>Check now Playing</button>*/}
-
-        {/*</div>*/}
-        <Footer />
-      </body>
-    );
-  }
+/*CSS for Grid*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px;
+  grid-template-rows: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px;
+  border: 2px solid darkblue;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-class Header extends Body {
-  render() {
-    return <p>Header</p>;
-  }
-}
-class Footer extends Body {
-  render() {
-    return <p>Footer</p>;
-  }
+/* CSS for Searchconsole*/
+.searchconsole {
+  height: 100%;
+  width: 100%;
+  border: 2px solid green;
+
+  grid-column-start: 5;
+  grid-column-end: 13;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
-/*** MAIN-FUNCTION ***/
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Head> </Head>
-        <Body> </Body>
-      </>
-    );
-  }
+.searchoutput {
+  height: 100%;
+  width: 100%;
+  border: 2px dashed red;
+  grid-row-start: 4;
+  grid-row-end: 32;
+  grid-column-start: 2;
+  grid-column-end: 16;
+}
+#search {
+  border: 2px solid #999;
+  border-radius: 0.5em;
+  font-size: 1.2em;
+  width: 90%;
+  padding: 5px;
+  margin: 5px;
+  transition: width 0.5s ease-in-out;
+}
+#search:focus {
+  border: 2px solid blue;
 }
 
-export default App;
+.button-search {
+  height: auto;
+  width: auto;
+}
+
+.spotify {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  border: 2px solid darkmagenta;
+}
+/* .wikipedia {
+  border: 2px solid darkred;
+}
+.picture {
+  border: 2px solid darkgoldenrod;
+}
+
+.youtube {
+  border: 2px solid pink;
+}
+.tabs {
+  border: 2px solid darksalmon;
+}
+ */
+.flex-basis-50 {
+  flex-basis: 50%;
+  min-width: 50%;
+}

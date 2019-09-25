@@ -1,5 +1,12 @@
 /*General CSS*/
-
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 body {
   background: lightgrey;
   width: 100%;
@@ -15,62 +22,11 @@ body > * {
 /*CSS for Grid*/
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 10px 1fr 1fr 1fr 1fr 1fr 1fr 10px);
-  grid-template-rows: repeat(4, 10px 1fr 1fr 1fr 1fr 1fr 1fr 10px);
+  grid-template-columns: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px;
+  grid-template-rows: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px;
   border: 2px solid darkblue;
   margin-left: 5px;
   margin-right: 5px;
-}
-
-.wikipedia {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkred;
-
-  grid-column-start: 2;
-  grid-column-end: 12;
-  grid-row-start: 5;
-  grid-row-end: 12;
-}
-.picture {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkgoldenrod;
-
-  grid-column-start: 13;
-  grid-column-end: 16;
-  grid-row-start: 6;
-  grid-row-end: 11;
-}
-.spotify {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkmagenta;
-
-  grid-column-start: 2;
-  grid-column-end: 9;
-  grid-row-start: 13;
-  grid-row-end: 24;
-}
-.youtube {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkslateblue;
-
-  grid-column-start: 10;
-  grid-column-end: 16;
-  grid-row-start: 13;
-  grid-row-end: 24;
-}
-.tabs {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darksalmon;
-
-  grid-column-start: 2;
-  grid-column-end: 16;
-  grid-row-start: 25;
-  grid-row-end: 32;
 }
 
 /* CSS for Searchconsole*/
@@ -82,8 +38,28 @@ body > * {
   grid-column-start: 5;
   grid-column-end: 13;
   grid-row-start: 2;
-  grid-row-end: 4;
+  grid-row-end: 3;
 }
+.spotify {
+  height: 100%;
+  width: 100%;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  grid-column-start: 2;
+  grid-column-end: 16;
+  border: 2px solid green;
+}
+
+.searchoutput {
+  height: 100%;
+  width: 100%;
+  border: 2px dashed red;
+  grid-row-start: 3;
+  grid-row-end: 23;
+  grid-column-start: 2;
+  grid-column-end: 16;
+}
+
 #search {
   border: 2px solid #999;
   border-radius: 0.5em;
@@ -100,4 +76,23 @@ body > * {
 .button-search {
   height: auto;
   width: auto;
+}
+
+/* .wikipedia {
+  border: 2px solid darkred;
+}
+.picture {
+  border: 2px solid darkgoldenrod;
+}
+
+.youtube {
+  border: 2px solid pink;
+}
+.tabs {
+  border: 2px solid darksalmon;
+}
+ */
+.flex-basis-50 {
+  flex-basis: 50%;
+  min-width: 50%;
 }

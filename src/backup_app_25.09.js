@@ -6,37 +6,59 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const spotifyWebApi = new Spotify();
-/* const bearerToken =
-  "BQCGsV1Rew5oHlZ1M2r4zY3yEjlDyeYTWR8jlmbdeGN9WRlYRvKmZAC9byDkl0X8qBEKWDYFWSp-cvGbq4wvF8YkkywcN9FH4oSHFBb8_hSTeuQnZWJl_D02XKwHN-YNGtRhhRRYM2YrP18c-L49pPgj";
- */
+const bearerToken =
+  "BQDsLb2vn9QeHwJfbFag2d7bmOzVDUnJWOAR3CtHbkSj2YAq697WNQ5DT-qtjmLQ-wyXDYEv1bOq3KWJ9bYleLcsFG8yLqKWLPA10S8kvmEmJXaOV0Ja9p2PieIp58XuHKNqivSDhDdhZ5QsyFTGQz6y";
+
 function App() {
-  const params = getHashParams();
-  const [query, setQuery] = useState("");
+  class Auth extends Component {
+    constructor() {
+      super();
+      const params = this.getHashParams();
+      this.state = {
+        loggedIn: params.access_token ? true : false,
+        nowPlaying: {
+          name: "Not Checked",
+          image: ""
+        }
+      };
+      if (params.access_token) {
+        spotifyWebApi.setAccessToken(params.access_token);
+      }
+    }
+    getHashParams() {
+      var hashParams = {};
+      var e,
+        r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+      while ((e = r.exec(q))) {
+        hashParams[e[1]] = decodeURIComponent(e[2]);
+      }
+      return hashParams;
+    }
+
+    getNowPlaying() {
+      spotifyWebApi.getMyCurrentPlaybackState().then(response => {
+        this.setState({
+          nowPlaying: {
+            name: response.item.name,
+            image: response.item.album.images[0].url
+          }
+        });
+      });
+    }
+  }
+  const [query, setQuery] = useState("Eminem");
   const [artists, setArtists] = useState([]);
   useEffect(() => {
     fetchArtists();
   }, []);
-
-  function getHashParams() {
-    var hashParams = {};
-    var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
-    while ((e = r.exec(q))) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-    }
-    return hashParams;
-  }
-  if (params.access_token) {
-    spotifyWebApi.setAccessToken(params.access_token);
-  }
 
   function fetchArtists() {
     let url = `https://api.spotify.com/v1/search?q=${query}&type=artist`;
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${params.access_token}`
+        Authorization: `Bearer ${bearerToken}`
       }
     })
       .then(resp => resp.json())
@@ -86,6 +108,17 @@ function App() {
               Login to Spotify
             </Button>
           </a>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => this.getNowPlaying()}
+          >
+            Get Now Playing
+          </Button>
+          <div> Now Playing: {this.state.nowPlaying.name} </div>
+          <div>
+            <img src={this.state.nowPlaying.image} style={{ width: 100 }} />
+          </div>
           {artists.map((artist, index) => {
             const img = artist.images[0];
             const imgUrl = img ? img.url : "https://placekitten.com/g/200/200";
