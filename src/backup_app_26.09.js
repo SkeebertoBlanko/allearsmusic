@@ -65,14 +65,12 @@ function App() {
     fetchArtists();
   }
 
-  /* TODO: function displayDivSwap() */
   function displayDivSwap() {
     if (displayDiv == false) {
       displayDiv = true;
     } else {
       displayDiv = false;
     }
-    return displayDiv;
   }
 
   /* Inputfield for Searchstring */
@@ -93,7 +91,7 @@ function App() {
             <button
               type="submit"
               className="my-2 bg-blue-600 text-blue-100 p-2 rounded shadow-lg"
-              /*TODO: onClick={displayDivSwap()} */
+              onClick={displayDivSwap()}
             >
               Search
             </button>
@@ -124,7 +122,7 @@ function App() {
               return (
                 console.log(artist) || (
                   <div className="w-1/3 mb-10 text-center p-3" key={index}>
-                    <a href={artistURL} alt={artistURL} target="_blank">
+                    <a href={artistURL} alt={artistURL}>
                       {
                         <img
                           className="rounded mb-3 text-center mx-auto"
@@ -152,7 +150,7 @@ function App() {
               return (
                 console.log(albums) || (
                   <div className="w-1/3 mb-10 text-center p-3" key={index}>
-                    <a href={albumURL} alt={albumURL} target="_blank">
+                    <a href={albumURL} alt={albumURL}>
                       {
                         <img
                           className="rounded mb-3 text-center mx-auto"
