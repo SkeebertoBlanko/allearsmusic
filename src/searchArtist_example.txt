@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+
+import "./styles.css";
+const bearerToken =
+  "BQCld1DnEvZ1b1xmaOEClXQVi0W1NIjZVh0kEOxBW6RO117GePMRdNWR_7BkcLxI_icHVBMp6YTBupmWcY316vJbk02PU3tKDGA1S-6rxBn85l6sVfphLlLf3TtavjLqQw6JoD5oWr3gg_EdzR8jajkT";
+
+function App() {
+  const [artists, setArtists] = useState([]);
+  useEffect(() => {
+    fetchArtists();
+  }, []);
+
+  function fetchArtists() {
+    let url =
+      "https://api.spotify.com/v1/search?q=alice%20in%20chains&type=artist";
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${bearerToken}`
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        setArtists(data.artists.items);
+      });
+  }
+
+  return (
+    <div className="App">
+      <div>
+        {artists.map(
+          (artist, index) =>
+            console.log(artist) || (
+              <div key={index}>
+                <img src={artist.images[0].url} alt={artist.name} width="400" />
+                <h3>{artist.name}</h3>
+              </div>
+            )
+        )}
+      </div>
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
