@@ -2,18 +2,11 @@ import React, { Component, useEffect, useState } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
 import Spotify from "spotify-web-api-js";
-import Youtbe from "youtube-api";
+import SearchBar from "./components/yt-search_bar";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import { bool } from "prop-types";
-import { tsConstructorType } from "@babel/types";
-import { generateKeyPair } from "crypto";
-import { request } from "http";
 
 /** needed constants and variables (globally)*/
 const spotifyWebApi = new Spotify();
-
-const Youtube = require("youtube-api");
 
 /*TODO: displayDiv & dontDisplay */
 let displayDiv = true;
@@ -52,14 +45,6 @@ function App() {
     window.location.href = "http://localhost:8888/";
   }
 
-  /** Youtbe */
-  function init() {
-    gapi.client.setApiKey("AIzaSyC8a0WYPpW4wzmmBaG7vaGlaFFoViefJ6c");
-    gapi.client.load("youtube", "v3", function() {
-      //API
-    });
-  }
-
   /*** FETCH */
   /** Spotify: function fetchSpotifyArtists() for searching Spotify Artists and Albums */
   function fetchSpotifyArtists() {
@@ -82,26 +67,22 @@ function App() {
   }
 
   /** Youtube fetch */
-  function fetchYoutubeArtist() {
-    $(
-      "form".on("submit", function(e) {
-        e.preventDefault();
+  /* function fetchYoutubeArtist() {
+    "form".on("submit", function(e) {
+      e.preventDefault();
 
-        var youtuberequest = gapi.client.youtube.search.list({
-          part: "snippet",
-          type: "video",
-          q: $(query)
-            .val()
-            .replace(/%20/g, "+"),
-          maxResults: 3,
-          order: "viewCount"
-        });
-        request.execute(function(response) {
-          console.log(response);
-        });
-      })
-    );
-  }
+      var youtuberequest = gapi.client.youtube.search.list({
+        part: "snippet",
+        type: "video",
+        q: query.val().replace(/%20/g, "+"),
+        maxResults: 3,
+        order: "viewCount"
+      });
+      request.execute(function(response) {
+        console.log(response);
+      });
+    });
+  } */
 
   /* Submit entered Searchstring */
   function handleSubmit(e) {
@@ -235,10 +216,11 @@ function App() {
             </div>
           </div>
         </div>
-
+        <div className="youtube">
+          <SearchBar />
+        </div>
         <div className="wikipedia"></div>
         <div className="picture"></div>
-        <div className="youtube"></div>
         <div className="tabs"></div>
       </div>
     </div>
