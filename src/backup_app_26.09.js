@@ -7,11 +7,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import { bool } from "prop-types";
 import { tsConstructorType } from "@babel/types";
 
+/** needed constants and variables (globally)*/
 const spotifyWebApi = new Spotify();
-let displayDiv = false;
+
+/*TODO: displayDiv & dontDisplay */
+let displayDiv = true;
 let dontDisplay = false;
 
+/*** Main Function */
 function App() {
+  /** constants and variables */
   const params = getHashParams();
   const [query, setQuery] = useState(" ");
   const [artists, setArtists] = useState([]);
@@ -21,6 +26,7 @@ function App() {
     fetchArtists();
   }, []);
 
+  /** default function getHashParams() of spotify web-auth to check AccessToken and redirect if needed */
   function getHashParams() {
     var hashParams = {};
     var e,
@@ -40,8 +46,9 @@ function App() {
     window.location.href = "http://localhost:8888/";
   }
 
+  /** function fetchArtists() for searching Spotify Artists and Albums */
   function fetchArtists() {
-    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=3`;
+    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=4`;
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -65,17 +72,20 @@ function App() {
     fetchArtists();
   }
 
+  /* TODO: function displayDivSwap() */
   function displayDivSwap() {
     if (displayDiv == false) {
       displayDiv = true;
     } else {
       displayDiv = false;
     }
+    return displayDiv;
   }
 
-  /* Inputfield for Searchstring */
+  /**** Return the Basic Grid-Structure of the Website */
   return (
     <div className="grid-container">
+      {/*** Inputfield for Searchstring */}
       <div id="input_search" className="searchinput">
         <div className="searchconsole">
           <h1 className="m-2">
@@ -91,16 +101,20 @@ function App() {
             <button
               type="submit"
               className="my-2 bg-blue-600 text-blue-100 p-2 rounded shadow-lg"
-              onClick={displayDivSwap()}
+              /*TODO: onClick={displayDivSwap()} */
             >
               Search
             </button>
           </form>
         </div>
       </div>
-      {/* Search Output on Website */}
+      {/*** Search Output on my Website */}
       <div id="output_search" className="searchoutput">
+        {/** Output of Spotify */}
         <div className="spotify">
+          <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
+            Spotify:
+          </h2>
           {dontDisplay && (
             <div className="m-3">
               <a href="http://localhost:8888">
@@ -111,60 +125,77 @@ function App() {
             </div>
           )}
 
-          {displayDiv && <h2 className="text-center mx-auto">Artists:</h2>}
-          <div className="flex flex-wrap">
-            {artists.map((artist, index) => {
-              const img = artist.images[0];
-              const artistURL = artist.external_urls.spotify;
-              const imgUrl = img
-                ? img.url
-                : "https://placekitten.com/g/100/100";
-              return (
-                console.log(artist) || (
-                  <div className="w-1/3 mb-10 text-center p-3" key={index}>
-                    <a href={artistURL} alt={artistURL}>
-                      {
-                        <img
-                          className="rounded mb-3 text-center mx-auto"
-                          src={imgUrl}
-                          alt={artist.name}
-                          width="80"
-                        />
-                      }
-                      <p>{artist.name}</p>
-                    </a>
-                    <br />
-                  </div>
-                )
-              );
-            })}
+          {/* Displaying the found Artists of Spotify */}
+          <div id="spotify-artist" className="border-2 border-gray-600 m-2">
+            {displayDiv && (
+              <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
+                Artists:
+              </h3>
+            )}
+            <div className="flex flex-wrap">
+              {artists.map((artist, index) => {
+                const img = artist.images[0];
+                const artistURL = artist.external_urls.spotify;
+                const imgUrl = img
+                  ? img.url
+                  : "https://placekitten.com/g/100/100";
+                return (
+                  console.log(artist) || (
+                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                      <a href={artistURL} alt={artistURL} target="_blank">
+                        {
+                          <img
+                            className="rounded mb-3 text-center mx-auto"
+                            src={imgUrl}
+                            alt={artist.name}
+                            width="80"
+                          />
+                        }
+                        <p className="text-sm">{artist.name}</p>
+                      </a>
+                      <br />
+                    </div>
+                  )
+                );
+              })}
+            </div>
           </div>
-          {displayDiv && <h2 className="text-center mx-auto">Albums:</h2>}
-          <div className="flex flex-wrap">
-            {albums.map((album, index) => {
-              const imgAlbum = album.images[0];
-              const albumURL = album.external_urls.spotify;
-              const imgUrlAlbum = imgAlbum
-                ? imgAlbum.url
-                : "https://placekitten.com/g/100/100";
-              return (
-                console.log(albums) || (
-                  <div className="w-1/3 mb-10 text-center p-3" key={index}>
-                    <a href={albumURL} alt={albumURL}>
-                      {
-                        <img
-                          className="rounded mb-3 text-center mx-auto"
-                          src={imgUrlAlbum}
-                          alt={album.name}
-                          width="80"
-                        />
-                      }
-                      <p>{album.name}</p>
-                    </a>
-                  </div>
-                )
-              );
-            })}
+          {/* Displaying the found Albums of Spotify */}
+          <div
+            id="spotify-album"
+            className="border-2 border-gray-600 m-2 tracking-wider"
+          >
+            {displayDiv && (
+              <h3 className="text-center mx-auto my-2 text-lg font-semibold">
+                Albums:
+              </h3>
+            )}
+            <div className="flex flex-wrap">
+              {albums.map((album, index) => {
+                const imgAlbum = album.images[0];
+                const albumURL = album.external_urls.spotify;
+                const imgUrlAlbum = imgAlbum
+                  ? imgAlbum.url
+                  : "https://placekitten.com/g/100/100";
+                return (
+                  console.log(albums) || (
+                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                      <a href={albumURL} alt={albumURL} target="_blank">
+                        {
+                          <img
+                            className="rounded mb-3 text-center mx-auto"
+                            src={imgUrlAlbum}
+                            alt={album.name}
+                            width="80"
+                          />
+                        }
+                        <p className="text-sm">{album.name}</p>
+                      </a>
+                    </div>
+                  )
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -176,6 +207,7 @@ function App() {
     </div>
   );
 }
+/** render Elements and Functions to create the Website */
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
 export default App;
