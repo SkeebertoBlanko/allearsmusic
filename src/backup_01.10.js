@@ -4,9 +4,9 @@ import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 
 import Spotify from "spotify-web-api-js";
+import Youtube from "./Youtube";
 
-/* import VideoList from "./components/video_list";
-import Constants from "Constants"; */
+import helpers from "./Helper";
 
 /** needed constants and variables (globally)*/
 const spotifyWebApi = new Spotify();
@@ -16,7 +16,7 @@ let displayDiv = true;
 let dontDisplay = false;
 
 /*** Main Function */
-function Spotify2() {
+function App() {
   /** constants and variables */
   const params = getHashParams();
   const [query, setQuery] = useState(" ");
@@ -64,9 +64,6 @@ function Spotify2() {
         setArtists(data.artists.items);
         setAlbums(data.albums.items);
       });
-    if (query == "") {
-      alert("Bitte geben Sie etwas in das Suchfeld ein!");
-    }
   }
 
   /* Submit entered Searchstring */
@@ -88,6 +85,30 @@ function Spotify2() {
   /**** Return the Basic Grid-Structure of the Website */
   return (
     <div className="grid-container">
+      {/*** Inputfield for Searchstring */}
+      <div id="input_search" className="searchinput">
+        <div className="searchconsole">
+          <h1 className="m-2">
+            Please enter the Artist or a Band you want to look up:
+          </h1>
+          <form className="" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              autoFocus
+              className="p-2 my-2 mx-auto rounded shadow-lg w-full"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="my-2 bg-blue-600 text-blue-100 p-2 rounded shadow-lg"
+              /*TODO: onClick={displayDivSwap()} */
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
       {/*** Search Output on my Website */}
       <div id="output_search" className="searchoutput">
         {/** Output of Spotify */}
@@ -178,11 +199,17 @@ function Spotify2() {
             </div>
           </div>
         </div>
+        <div className="youtube">
+          <Youtube />
+        </div>
+        <div className="wikipedia"></div>
+        <div className="picture"></div>
+        <div className="tabs"></div>
       </div>
     </div>
   );
 }
 /** render Elements and Functions to create the Website */
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Spotify2 />, rootElement);
-export default Spotify2;
+ReactDOM.render(<App />, rootElement);
+export default App;

@@ -14,7 +14,7 @@ class Yout extends Component {
       selectedVideo: null
     };
 
-    this.videoSearch("React Tutorials");
+    this.videoSearch("Wu tang");
   }
 
   videoSearch(searchTerm) {
@@ -28,7 +28,7 @@ class Yout extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="youtube">
         <SearchBar
           onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
         />
