@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: SpotifyOwn.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: SpotifyOwn.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @author Schober Andreas
  * @version 1.0
  * Filename: SpotifyOwn.js
@@ -25,7 +53,7 @@ function SpotifyOwn() {
   const [albums, setAlbums] = useState([]);
 
   /**
-   * TODO: displayDiv & dontDisplay
+   * TODO: displayDiv &amp; dontDisplay
    */
   let displayDiv = true;
   let dontDisplay = false;
@@ -40,7 +68,7 @@ function SpotifyOwn() {
   function getHashParams() {
     var hashParams = {};
     var e,
-      r = /([^&;=]+)=?([^&;]*)/g,
+      r = /([^&amp;;=]+)=?([^&amp;;]*)/g,
       q = window.location.hash.substring(1);
     while ((e = r.exec(q))) {
       hashParams[e[1]] = decodeURIComponent(e[2]);
@@ -60,7 +88,7 @@ function SpotifyOwn() {
    * function fetchSpotifyArtists() for searching Spotify Artists and Albums
    */
   function fetchSpotifyArtists() {
-    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=4`;
+    let url = `https://api.spotify.com/v1/search?q=${query}&amp;type=artist,album&amp;limit=4`;
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -85,18 +113,18 @@ function SpotifyOwn() {
   }
 
   return (
-    <div>
+    &lt;div>
       {/**
        * Display the Searchinputfield
        *
        */}
-      <div id="input_search" className="searchinput">
-        <div className="searchconsole">
-          <h1 className="m-2">
+      &lt;div id="input_search" className="searchinput">
+        &lt;div className="searchconsole">
+          &lt;h1 className="m-2">
             Please enter the Artist or a Band you want to look up:
-          </h1>
-          <form className="" onSubmit={handleSubmit}>
-            <input
+          &lt;/h1>
+          &lt;form className="" onSubmit={handleSubmit}>
+            &lt;input
               type="text"
               autoFocus
               className="p-2 my-2 mx-auto rounded shadow-lg w-full"
@@ -104,45 +132,45 @@ function SpotifyOwn() {
               onChange={e => setQuery(e.target.value)}
               name="searchinput"
             />
-            <button
+            &lt;button
               type="submit"
               className="my-2 bg-blue-600 text-blue-100 p-2 rounded shadow-lg"
               /*TODO: onClick={displayDivSwap()} */
             >
               Search
-            </button>
-          </form>
-        </div>
-      </div>
+            &lt;/button>
+          &lt;/form>
+        &lt;/div>
+      &lt;/div>
       {/**
        *
        * hidden login for Spotify (needed if no authorization token is stored)
        */}
-      <div className="spotify">
-        <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
+      &lt;div className="spotify">
+        &lt;h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
           Spotify:
-        </h2>
-        {dontDisplay && (
-          <div className="m-3">
-            <a href="http://localhost:8888">
-              <Button variant="contained" color="primary">
+        &lt;/h2>
+        {dontDisplay &amp;&amp; (
+          &lt;div className="m-3">
+            &lt;a href="http://localhost:8888">
+              &lt;Button variant="contained" color="primary">
                 Login to Spotify
-              </Button>
-            </a>
-          </div>
+              &lt;/Button>
+            &lt;/a>
+          &lt;/div>
         )}
 
         {/**
          * Displaying the found Artists of Spotify
          */}
-        <div id="spotify-artist" className="border-2 border-gray-600 m-2">
-          {displayDiv && (
-            <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
+        &lt;div id="spotify-artist" className="border-2 border-gray-600 m-2">
+          {displayDiv &amp;&amp; (
+            &lt;h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
               Artists:
-            </h3>
+            &lt;/h3>
           )}
 
-          <div className="flex flex-wrap">
+          &lt;div className="flex flex-wrap">
             {artists.map((artist, index) => {
               const img = artist.images[0];
               const artistURL = artist.external_urls.spotify;
@@ -151,43 +179,43 @@ function SpotifyOwn() {
                 : "https://placekitten.com/g/100/100";
               return (
                 console.log(artist) || (
-                  <div className="w-1/2 mb-2 text-center p-1" key={index}>
-                    <a
+                  &lt;div className="w-1/2 mb-2 text-center p-1" key={index}>
+                    &lt;a
                       href={artistURL}
                       alt={artistURL}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {
-                        <img
+                        &lt;img
                           className="rounded mb-3 text-center mx-auto"
                           src={imgUrl}
                           alt={artist.name}
                           width="80"
                         />
                       }
-                      <p className="text-sm">{artist.name}</p>
-                    </a>
-                    <br />
-                  </div>
+                      &lt;p className="text-sm">{artist.name}&lt;/p>
+                    &lt;/a>
+                    &lt;br />
+                  &lt;/div>
                 )
               );
             })}
-          </div>
-        </div>
+          &lt;/div>
+        &lt;/div>
         {/**
          * Displaying the found Albums of Spotify
          */}
-        <div
+        &lt;div
           id="spotify-album"
           className="border-2 border-gray-600 m-2 tracking-wider"
         >
-          {displayDiv && (
-            <h3 className="text-center mx-auto my-2 text-lg font-semibold">
+          {displayDiv &amp;&amp; (
+            &lt;h3 className="text-center mx-auto my-2 text-lg font-semibold">
               Albums:
-            </h3>
+            &lt;/h3>
           )}
-          <div className="flex flex-wrap">
+          &lt;div className="flex flex-wrap">
             {albums.map((album, index) => {
               const imgAlbum = album.images[0];
               const albumURL = album.external_urls.spotify;
@@ -196,36 +224,59 @@ function SpotifyOwn() {
                 : "https://placekitten.com/g/100/100";
               return (
                 console.log(albums) || (
-                  <div className="w-1/2 mb-2 text-center p-1" key={index}>
-                    <a
+                  &lt;div className="w-1/2 mb-2 text-center p-1" key={index}>
+                    &lt;a
                       href={albumURL}
                       alt={albumURL}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {
-                        <img
+                        &lt;img
                           className="rounded mb-3 text-center mx-auto"
                           src={imgUrlAlbum}
                           alt={album.name}
                           width="80"
                         />
                       }
-                      <p className="text-sm">{album.name}</p>
-                    </a>
-                  </div>
+                      &lt;p className="text-sm">{album.name}&lt;/p>
+                    &lt;/a>
+                  &lt;/div>
                 )
               );
             })}
-          </div>
-        </div>
-      </div>
-    </div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
   );
 }
 /**
  * render Elements and Functions to create the Website
  */
 const rootElement = document.getElementById("root");
-ReactDOM.render(<SpotifyOwn />, rootElement);
+ReactDOM.render(&lt;SpotifyOwn />, rootElement);
 export default SpotifyOwn;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#rootElement">rootElement</a></li><li><a href="global.html#SpotifyOwn">SpotifyOwn</a></li><li><a href="global.html#spotifyWebApi">spotifyWebApi</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Oct 03 2019 15:53:38 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

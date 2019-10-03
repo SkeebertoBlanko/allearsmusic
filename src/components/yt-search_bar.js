@@ -1,5 +1,7 @@
 import React from "react";
 
+import Context from "../store/context";
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -22,3 +24,23 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+/* const SearchBar = () => {
+  const { state, actions } = useContext(Context);
+  return (
+    <div className="search-bar">
+      <input
+        value={state.value}
+        onChange={e =>
+          actions({
+            type: "setState",
+            payload: { ...state, value: e.target.value }
+          })
+        }
+        name="searchinput"
+      />
+    </div>
+  );
+};
+
+export default SearchBar; */

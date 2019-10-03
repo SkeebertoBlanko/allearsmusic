@@ -3,6 +3,7 @@ import SearchBar from "./components/yt-search_bar";
 import YTSearch from "youtube-api-search";
 import VideoList from "./components/yt-video_list";
 import VideoDetail from "./components/yt-video_details";
+import Context from "./store/context";
 const API_KEY = "AIzaSyCb4ZV_6zpq8_d-GptL9jUwx7vpMWeIl1A";
 
 class Yout extends Component {
@@ -45,3 +46,23 @@ class Yout extends Component {
 }
 
 export default Yout;
+/* const Yout = () => {
+  const { state, actions } = useContext(Context);
+
+  return (
+    <div className="youtube">
+      <SearchBar
+        onChange={e =>
+          actions({
+            type: "setState",
+            payload: { ...state, value: e.target.value }
+          })
+        }
+      />
+      <VideoDetail video={state.selectedVideo} />
+     
+    </div>
+  );
+};
+
+export default Yout;  */

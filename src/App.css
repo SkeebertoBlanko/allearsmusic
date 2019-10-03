@@ -86,9 +86,9 @@ body > * {
 
 /*CSS for Grid*/
 .grid-container {
-  display: grid;
+  /*   display: grid;
   grid-template-columns: 10px 1fr 1fr 1fr 1fr 1fr 10px;
-  grid-template-rows: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px;
+  grid-template-rows: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px; */
   border: 2px solid darkblue;
   margin-left: 5px;
   margin-right: 5px;
@@ -98,15 +98,15 @@ body > * {
 .searchinput {
   display: grid;
   border: 2px dashed green;
-  grid-column: 1 / 8;
+  /*   grid-column: 1 / 8;
   grid-row: 1 / 3;
   grid-template-columns: 1fr 2fr 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; */
 }
 .searchconsole {
   border: 2px solid lightgreen;
-  grid-column: 2 / 4;
-  grid-row: 1 / 3;
+  /*   grid-column: 2 / 4;
+  grid-row: 1 / 3; */
 }
 #search {
   border: 2px solid #999;
@@ -128,15 +128,15 @@ body > * {
 
 .searchoutput {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  /*   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr; */
   border: 2px dashed red;
-  grid-row: 3 / 16;
-  grid-column: 1 / 8;
+  /*   grid-row: 3 / 16;
+  grid-column: 1 / 8; */
 }
 .spotify {
-  grid-column: 1 / 3;
-  grid-row: 1 / 3;
+  /*   grid-column: 1 / 3;
+  grid-row: 1 / 3; */
   border: 2px solid green;
 }
 .wikipedia {
@@ -149,8 +149,8 @@ body > * {
 }
 
 .youtube {
-  grid-column: 3/5;
-  grid-row: 1/3;
+  /*   grid-column: 3/5;
+  grid-row: 1/3; */
   border: 2px solid pink;
 }
 .tabs {
