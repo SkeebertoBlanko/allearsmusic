@@ -1,14 +1,10 @@
-/**
- * @author Schober Andreas
- * @version 1.0
- * Filename: SpotifyOwn.js
- */
-
-import React, { Component, useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import Spotify from "spotify-web-api-js";
+
+import Context from "./store/context";
 
 /**
  * SpotifyOwn() is the MainFunction for displaying and prozess the Spotify search
@@ -20,6 +16,7 @@ function SpotifyOwn() {
    */
   const spotifyWebApi = new Spotify();
   const params = getHashParams();
+  const { state, actions } = useContext(Context);
   const [query, setQuery] = useState(" ");
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
@@ -77,7 +74,7 @@ function SpotifyOwn() {
 
   /**
    *
-   * @param {*} process the entered Searchstring to fetch the Spotifydata e
+   *
    */
   function handleSubmit(e) {
     e.preventDefault();
@@ -226,6 +223,6 @@ function SpotifyOwn() {
 /**
  * render Elements and Functions to create the Website
  */
-const rootElement = document.getElementById("root");
-ReactDOM.render(<SpotifyOwn />, rootElement);
+
+ReactDOM.render(<SpotifyOwn />, document.getElementById("root"));
 export default SpotifyOwn;

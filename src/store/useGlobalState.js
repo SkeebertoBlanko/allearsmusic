@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useGlobalState = () => {
-  const [state, setState] = useState({ value: "" });
+  const [state, setState] = useState({ value: "eminem", list: [] });
 
   const actions = action => {
     const { type, payload } = action;

@@ -22,6 +22,7 @@ import List from "./components/list";
 function App() {
   return (
     <div>
+      <List />
       <Form />
       <Search />
       <SpotifyOwn />

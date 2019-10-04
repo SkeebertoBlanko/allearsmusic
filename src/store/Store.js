@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 export const initialState = { query: "" };
 
 export const reducer = (state, action) => {
@@ -10,4 +10,4 @@ export const reducer = (state, action) => {
   }
 };
 
-export const Context = React.createContext();
+export const Context = React.createContext(); */
