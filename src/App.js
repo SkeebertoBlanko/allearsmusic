@@ -7,7 +7,7 @@ import Spotify from "spotify-web-api-js";
   /*const spotifyWebApi = new Spotify();*/
 }
 const bearerToken =
-  "BQAbkiuf6tVi2viNx86mVAP6Je9NJFaxm3TCRo5R_gXsBe24xn4WXe_XEhCDNllT787PoONP8McQEmDANT4UGOfzYlsWUFYpIc9JjYqiTXCLhqiQpW8SklGTFtLQTKmOvq-7lZ40NI4ftTBZYBMqMv_e";
+  "BQBTGhUMQ1RmM6tDzn5NM6c1JC5YIYeOVm8ADFCKWcDafD58WkavXAQLFLuIf_GT2mFm3WOtSyzzVlf81keFAlnYSaoIiO7jnd1Pc-PjDt9R2Q792tYA76dfED1rln6anCgUPBKoYeER-uNS6d1IFugA";
 
 function App() {
   const [query, setQuery] = useState("eminem");
