@@ -1,5 +1,77 @@
-/*General CSS*/
+.search-bar {
+  margin: 20px;
+  text-align: center;
+}
 
+.search-bar input {
+  width: 75%;
+  border: 1px solid black;
+}
+
+.video-item img {
+  max-width: 64px;
+}
+
+.video-detail .details {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.media-left {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #eee;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*General CSS*/
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 body {
   background: lightgrey;
   width: 100%;
@@ -14,75 +86,27 @@ body > * {
 
 /*CSS for Grid*/
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 10px 1fr 1fr 1fr 1fr 1fr 1fr 10px);
-  grid-template-rows: repeat(4, 10px 1fr 1fr 1fr 1fr 1fr 1fr 10px);
+  /*   display: grid;
+  grid-template-columns: 10px 1fr 1fr 1fr 1fr 1fr 10px;
+  grid-template-rows: 10px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10px; */
   border: 2px solid darkblue;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.wikipedia {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkred;
-
-  grid-column-start: 2;
-  grid-column-end: 12;
-  grid-row-start: 5;
-  grid-row-end: 12;
-}
-.picture {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkgoldenrod;
-
-  grid-column-start: 13;
-  grid-column-end: 16;
-  grid-row-start: 6;
-  grid-row-end: 11;
-}
-.spotify {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkmagenta;
-
-  grid-column-start: 2;
-  grid-column-end: 9;
-  grid-row-start: 13;
-  grid-row-end: 24;
-}
-.youtube {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darkslateblue;
-
-  grid-column-start: 10;
-  grid-column-end: 16;
-  grid-row-start: 13;
-  grid-row-end: 24;
-}
-.tabs {
-  height: 100%;
-  width: 100%;
-  border: 2px solid darksalmon;
-
-  grid-column-start: 2;
-  grid-column-end: 16;
-  grid-row-start: 25;
-  grid-row-end: 32;
-}
-
 /* CSS for Searchconsole*/
+.searchinput {
+  display: grid;
+  border: 2px dashed green;
+  /*   grid-column: 1 / 8;
+  grid-row: 1 / 3;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr; */
+}
 .searchconsole {
-  height: 100%;
-  width: 100%;
-  border: 2px solid green;
-
-  grid-column-start: 5;
-  grid-column-end: 13;
-  grid-row-start: 2;
-  grid-row-end: 4;
+  border: 2px solid lightgreen;
+  /*   grid-column: 2 / 4;
+  grid-row: 1 / 3; */
 }
 #search {
   border: 2px solid #999;
@@ -100,4 +124,40 @@ body > * {
 .button-search {
   height: auto;
   width: auto;
+}
+
+.searchoutput {
+  display: grid;
+  /*   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr; */
+  border: 2px dashed red;
+  /*   grid-row: 3 / 16;
+  grid-column: 1 / 8; */
+}
+.spotify {
+  /*   grid-column: 1 / 3;
+  grid-row: 1 / 3; */
+  border: 2px solid green;
+}
+.wikipedia {
+  /* grid-column: 3 / 5;
+  grid-row: 1 / 2; */
+  border: 2px solid darkred;
+}
+.picture {
+  border: 2px solid darkgoldenrod;
+}
+
+.youtube {
+  /*   grid-column: 3/5;
+  grid-row: 1/3; */
+  border: 2px solid pink;
+}
+.tabs {
+  border: 2px solid darksalmon;
+}
+
+.flex-basis-50 {
+  flex-basis: 50%;
+  min-width: 50%;
 }
