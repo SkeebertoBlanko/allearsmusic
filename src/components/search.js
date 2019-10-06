@@ -4,7 +4,7 @@
 /** FOR TESTING */ /** FOR TESTING */
 /** FOR TESTING */
 
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import "../App.css";
 import Context from "../store/context";
 

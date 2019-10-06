@@ -3,7 +3,6 @@ import SearchBar from "./components/yt-search_bar";
 import YTSearch from "youtube-api-search";
 import VideoList from "./components/yt-video_list";
 import VideoDetail from "./components/yt-video_details";
-import Context from "./store/context";
 import Search from "./components/search";
 
 const API_KEY = "AIzaSyCb4ZV_6zpq8_d-GptL9jUwx7vpMWeIl1A";
@@ -35,7 +34,7 @@ class Yout extends Component {
         <SearchBar
           onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
         />
-        <VideoDetail video={this.state.selectedVideo} />
+        <VideoDetail video={this.state.selectedVideo} /><br /><br />
         <VideoList
           onVideoSelect={userSelected =>
             this.setState({ selectedVideo: userSelected })

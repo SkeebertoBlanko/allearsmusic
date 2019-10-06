@@ -1,0 +1,22 @@
+/**
+*GRID-Layout
+*/
+.flex-container {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+  }
+  
+  .Header { flex:1 1 100%;}
+  
+  .Footer {  flex:1 1 100%;}
+  
+  .Body {
+    display: flex;
+    flex-wrap:wrap;
+    flex:1 1 100%;
+  }
+  .Spotify, .Youtube, .Wikipedia, .div4, .div5, .div6 { flex:1 1 50%; }
+  
+
+  

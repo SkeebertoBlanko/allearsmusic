@@ -4,7 +4,7 @@ const VideoListItem = props => {
   const video = props.video;
   const onUserSelected = props.onUserSelected;
   console.log(video);
-  const imageUrl = video.snippet.thumbnails.default.url;
+  const imageUrl = video.snippet.thumbnails.medium.url;
 
   return (
     <li onClick={() => onUserSelected(video)} className="list-group-item">
@@ -14,7 +14,7 @@ const VideoListItem = props => {
         </div>
 
         <div className="w-2/3">
-          <div className="">{video.snippet.title}</div>
+          <div className="yt-list-title">{video.snippet.title}</div>
         </div>
       </span>
     </li>
