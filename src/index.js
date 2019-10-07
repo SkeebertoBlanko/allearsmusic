@@ -8,7 +8,7 @@ import useGlobalState from "./store/useGlobalState";
 import Context from "./store/context";
 
 const Index = () => {
-  const store = useGlobalState();
+  const store = useGlobalState(Context);
   return (
     <Context.Provider value={store}>
       <App />

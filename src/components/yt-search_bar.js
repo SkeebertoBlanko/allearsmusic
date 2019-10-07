@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-
-import Context from "../store/context";
+import React from "react";
 
 class SearchBar extends React.Component {
   constructor(props) {

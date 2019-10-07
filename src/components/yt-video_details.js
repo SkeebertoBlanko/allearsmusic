@@ -1,4 +1,5 @@
 import React from "react";
+import "../App.css";
 
 const VideoDetail = props => {
   const video = props.video;
@@ -12,16 +13,19 @@ const VideoDetail = props => {
 
   return (
     <div className="video-detail">
+      <h2 class="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
+        Youtube:{" "}
+      </h2>
       <div className="embed-responsive embed-responsive-16by9">
         <iframe
-          className="embed-responsive-item"
+          className="embed-responsive-itemn rounded"
           src={url}
           title={video.snippet.title}
         ></iframe>
       </div>
-      <div className="details">
+      <div className="details my-0 bg-gray-500">
         <div>{video.snippet.title}</div>
-        <div>{video.snippet.description}</div>
+        {/* <div>{video.snippet.description}</div> */}
       </div>
     </div>
   );

@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import Spotify from "spotify-web-api-js";
-
-import Context from "./store/context";
+import { Container } from "@material-ui/core";
 
 /**
  * SpotifyOwn() is the MainFunction for displaying and prozess the Spotify search
@@ -16,7 +15,7 @@ function SpotifyOwn() {
    */
   const spotifyWebApi = new Spotify();
   const params = getHashParams();
-  const { state, actions } = useContext(Context);
+  /*   const { state, actions } = useContext(Context); */
   const [query, setQuery] = useState(" ");
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
@@ -26,10 +25,6 @@ function SpotifyOwn() {
    */
   let displayDiv = true;
   let dontDisplay = false;
-
-  useEffect(() => {
-    fetchSpotifyArtists();
-  }, []);
 
   /**
    * function getHashParams() for the authorization of SpotifyLogin
@@ -48,7 +43,7 @@ function SpotifyOwn() {
     spotifyWebApi.setAccessToken(params.access_token);
   } else {
     alert(
-      "Du hast keinen AccessToken hinterlegt, dieser wird für den Betrieb der Webseite benötigt! Du wirst nun auf zum Spotify-Login weitergeleitet"
+      "Du hast noch keinen Spotify-AccessToken hinterlegt, dieser wird für den Betrieb der Webseite benötigt! Du wirst nun auf zum Spotify-Login weitergeleitet"
     );
     window.location.href = "http://localhost:8888/";
   }
@@ -89,22 +84,18 @@ function SpotifyOwn() {
        */}
       <div id="input_search" className="searchinput">
         <div className="searchconsole">
-          <h1 className="m-2">
-            Please enter the Artist or a Band you want to look up:
-          </h1>
           <form className="" onSubmit={handleSubmit}>
             <input
               type="text"
               autoFocus
-              className="p-2 my-2 mx-auto rounded shadow-lg w-full"
+              className="p-2 my-2 mx-auto rounded shadow-lg w-3/5"
               value={query}
               onChange={e => setQuery(e.target.value)}
               name="searchinput"
             />
             <button
               type="submit"
-              className="my-2 bg-blue-600 text-blue-100 p-2 rounded shadow-lg"
-              /*TODO: onClick={displayDivSwap()} */
+              className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
             >
               Search
             </button>
@@ -115,7 +106,7 @@ function SpotifyOwn() {
        *
        * hidden login for Spotify (needed if no authorization token is stored)
        */}
-      <div className="spotify">
+      <div className="spotify bg-gray-100 rounded p-2 border-2 border-black">
         <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
           Spotify:
         </h2>
@@ -132,90 +123,98 @@ function SpotifyOwn() {
         {/**
          * Displaying the found Artists of Spotify
          */}
-        <div id="spotify-artist" className="border-2 border-gray-600 m-2">
-          {displayDiv && (
-            <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
-              Artists:
-            </h3>
-          )}
+        <Container maxWidth="md">
+          <div
+            id="spotify-artist"
+            className="border-2 border-black m-2 bg-gray-300 rounded"
+          >
+            {displayDiv && (
+              <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
+                Artists:
+              </h3>
+            )}
 
-          <div className="flex flex-wrap">
-            {artists.map((artist, index) => {
-              const img = artist.images[0];
-              const artistURL = artist.external_urls.spotify;
-              const imgUrl = img
-                ? img.url
-                : "https://placekitten.com/g/100/100";
-              return (
-                console.log(artist) || (
-                  <div className="w-1/2 mb-2 text-center p-1" key={index}>
-                    <a
-                      href={artistURL}
-                      alt={artistURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {
-                        <img
-                          className="rounded mb-3 text-center mx-auto"
-                          src={imgUrl}
-                          alt={artist.name}
-                          width="80"
-                        />
-                      }
-                      <p className="text-sm">{artist.name}</p>
-                    </a>
-                    <br />
-                  </div>
-                )
-              );
-            })}
+            <div className="flex flex-wrap">
+              {artists.map((artist, index) => {
+                const img = artist.images[0];
+                const artistURL = artist.external_urls.spotify;
+                const imgUrl = img
+                  ? img.url
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
+                return (
+                  console.log(artist) || (
+                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                      <a
+                        href={artistURL}
+                        alt={artistURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {
+                          <img
+                            className="rounded mb-3 text-center mx-auto"
+                            src={imgUrl}
+                            alt={artist.name}
+                            width="80"
+                          />
+                        }
+                        <p className="text-sm">{artist.name}</p>
+                      </a>
+                      <br />
+                    </div>
+                  )
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </Container>
+
         {/**
          * Displaying the found Albums of Spotify
          */}
-        <div
-          id="spotify-album"
-          className="border-2 border-gray-600 m-2 tracking-wider"
-        >
-          {displayDiv && (
-            <h3 className="text-center mx-auto my-2 text-lg font-semibold">
-              Albums:
-            </h3>
-          )}
-          <div className="flex flex-wrap">
-            {albums.map((album, index) => {
-              const imgAlbum = album.images[0];
-              const albumURL = album.external_urls.spotify;
-              const imgUrlAlbum = imgAlbum
-                ? imgAlbum.url
-                : "https://placekitten.com/g/100/100";
-              return (
-                console.log(albums) || (
-                  <div className="w-1/2 mb-2 text-center p-1" key={index}>
-                    <a
-                      href={albumURL}
-                      alt={albumURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {
-                        <img
-                          className="rounded mb-3 text-center mx-auto"
-                          src={imgUrlAlbum}
-                          alt={album.name}
-                          width="80"
-                        />
-                      }
-                      <p className="text-sm">{album.name}</p>
-                    </a>
-                  </div>
-                )
-              );
-            })}
+        <Container maxWidth="md">
+          <div
+            id="spotify-album"
+            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
+          >
+            {displayDiv && (
+              <h3 className="text-center mx-auto my-2 text-lg font-semibold">
+                Albums:
+              </h3>
+            )}
+            <div className="flex flex-wrap">
+              {albums.map((album, index) => {
+                const imgAlbum = album.images[0];
+                const albumURL = album.external_urls.spotify;
+                const imgUrlAlbum = imgAlbum
+                  ? imgAlbum.url
+                  : "https://placekitten.com/g/100/100";
+                return (
+                  console.log(albums) || (
+                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                      <a
+                        href={albumURL}
+                        alt={albumURL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {
+                          <img
+                            className="rounded mb-3 text-center mx-auto"
+                            src={imgUrlAlbum}
+                            alt={album.name}
+                            width="80"
+                          />
+                        }
+                        <p className="text-sm">{album.name}</p>
+                      </a>
+                    </div>
+                  )
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
     </div>
   );

@@ -13,9 +13,9 @@ const Search = () => {
   return (
     <React.Fragment>
       <form>
-        <label for="searchinput">Searchinput</label>
+        <label htmlFor="searchinput">Searchinput</label>
         <input
-          className="p-2 my-2 mx-auto rounded shadow-lg w-full"
+          className="p-2 my-2 mx-auto rounded shadow-lg w-3/5"
           type="text"
           name="searchinput"
           value={state.value}
@@ -26,6 +26,12 @@ const Search = () => {
             })
           }
         />
+        <button
+          type="submit"
+          className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
+        >
+          Search
+        </button>
       </form>
     </React.Fragment>
   );
