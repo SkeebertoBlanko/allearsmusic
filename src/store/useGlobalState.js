@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const useGlobalState = () => {
   const [state, setState] = useState({ value: "eminem", list: [] });
