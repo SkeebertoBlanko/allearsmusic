@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import Store from "./store/Store";
 
 import useGlobalState from "./store/useGlobalState";
 import Context from "./store/context";
 
 const Index = () => {
-  const store = useGlobalState(Context);
   return (
-    <Context.Provider value={store}>
+    <Store>
       <App />
-    </Context.Provider>
+    </Store>
   );
 };
 

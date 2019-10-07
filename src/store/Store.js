@@ -1,13 +1,16 @@
-/* import React from "react";
-export const initialState = { query: "" };
+import React, { useState } from "react";
 
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case "setQuery":
-      return { query: action.value };
-    default:
-      return state;
-  }
+
+export const SearchContext = React.createContext("Wu Tang2");
+
+const Store = ({ children }) => {
+  const [query, setQuery] = useState("Wu Tang");
+
+  return (
+    <SearchContext.Provider value={[query, setQuery]}>
+      {children}
+    </SearchContext.Provider>
+  );
 };
 
-export const Context = React.createContext(); */
+export default Store;
