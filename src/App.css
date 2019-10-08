@@ -110,3 +110,28 @@ body > * {
   flex-basis: 50%;
   min-width: 50%;
 }
+
+.searchResultDiv {
+  width: 800px;
+  margin: 0 auto;
+  padding: 2px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.searchResultDiv h3 {
+  color: red;
+}
+.searchResultDiv h3 a {
+  display: inline-block;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.searchResultDiv .link a {
+  text-decoration: none;
+  color: green;
+}
+
+.searchResultDiv .link a:hover {
+  text-decoration: none;
+}

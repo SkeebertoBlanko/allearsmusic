@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-
-export const SearchContext = React.createContext("Wu Tang2");
+export const SearchContext = React.createContext("");
 
 const Store = ({ children }) => {
   const [query, setQuery] = useState("Wu Tang");

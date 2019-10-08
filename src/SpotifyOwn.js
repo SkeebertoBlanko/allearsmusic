@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
 import Button from "@material-ui/core/Button";
 import Spotify from "spotify-web-api-js";
 import { Container } from "@material-ui/core";
+
+import { SearchContext } from "./store/Store";
 
 /**
  * SpotifyOwn() is the MainFunction for displaying and prozess the Spotify search
@@ -16,7 +18,7 @@ function SpotifyOwn() {
   const spotifyWebApi = new Spotify();
   const params = getHashParams();
   /*   const { state, actions } = useContext(Context); */
-  const [query, setQuery] = useState(" ");
+  const [query, setQuery] = useContext(SearchContext);
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
 

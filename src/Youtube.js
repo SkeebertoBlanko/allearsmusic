@@ -6,8 +6,7 @@ import VideoDetail from "./components/yt-video_details";
 import Search from "./components/search";
 import { Container } from "@material-ui/core";
 
-const API_KEY = "AIzaSyDwOzEbE0yVZYDIJ3jen0sthQdb3Ct82AM";
-
+const API_KEY = "AIzaSyDhrPe0PlzO3AunvP3m0Qwl4Hrz_bMN4yo";
 class Yout extends Component {
   constructor(props) {
     super(props);

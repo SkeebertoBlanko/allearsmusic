@@ -6,8 +6,6 @@ import Button from "@material-ui/core/Button";
 import Spotify from "spotify-web-api-js";
 import Youtube from "./Youtube";
 
-import helpers from "./Helper";
-
 /** needed constants and variables (globally)*/
 const spotifyWebApi = new Spotify();
 
