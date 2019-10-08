@@ -97,7 +97,7 @@ class Wikipedia extends React.Component {
       );
     }
     return (
-      <div className="Wikipedia bg-gray-100 rounded p-2 mb-4 border-2 border-black">
+      <div className="Wikipedia bg-gray-100 rounded p-2 border-2 border-black">
         <h2>Wikipedia</h2>
         <form action="">
           <input

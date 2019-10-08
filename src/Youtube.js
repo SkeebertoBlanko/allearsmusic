@@ -35,7 +35,7 @@ class Yout extends Component {
           <SearchBar
             onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
           />
-          <div className="bg-gray-100 p-2 rounded border-2 border-black">
+          <div className="bg-gray-100 p-2 mb-4 rounded border-2 border-black">
             <VideoDetail video={this.state.selectedVideo} />
             <VideoList
               onVideoSelect={userSelected =>

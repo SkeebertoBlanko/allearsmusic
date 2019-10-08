@@ -108,7 +108,7 @@ function SpotifyOwn() {
        *
        * hidden login for Spotify (needed if no authorization token is stored)
        */}
-      <div className="spotify bg-gray-100 rounded p-2 border-2 border-black">
+      <div className="spotify bg-gray-100 rounded p-2 mb-4 border-2 border-black">
         <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
           Spotify:
         </h2>

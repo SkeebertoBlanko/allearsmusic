@@ -29,14 +29,14 @@ const App = () => {
     <div className="flex-container">
       {/* <Headergrid />
       <Bodygrid />
-      <Footergrid />
+      <Footergrid />*/}
       <div className="Spotify">
         <SpotifyOwn />
       </div>
       <div className="Youtube">
         <Youtube />
       </div>
-      <h1>The query is {query}!!!!!!!!!!!!</h1> */}
+      <h1>The query is {query}!!!!!!!!!!!!</h1> 
 
       <Wikipedia />
     </div>
