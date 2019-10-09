@@ -1,53 +1,38 @@
-import React, { Component } from "react";
+import React, { useContext, useState } from "react";
 import SearchBar from "./components/yt-search_bar";
 import YTSearch from "youtube-api-search";
 import VideoList from "./components/yt-video_list";
 import VideoDetail from "./components/yt-video_details";
 import Search from "./components/search";
 import { Container } from "@material-ui/core";
-
 const API_KEY = "AIzaSyDhrPe0PlzO3AunvP3m0Qwl4Hrz_bMN4yo";
-class Yout extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      videos: [],
-      selectedVideo: null
-    };
-
-    this.videoSearch(" ");
-  }
-  videoSearch(searchTerm) {
+function Yout(props) {
+  const [videos, setVideos] = useState([]);
+  const [selectedVideos, setSelectedVideo] = useState(null);
+  const videoSearch = searchTerm => {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
       console.log(data);
-      this.setState({
-        videos: data,
-        selectedVideo: data[0]
-      });
+      setVideos(data);
+      setSelectedVideo(data[0]);
     });
-  }
-  render() {
-    return (
-      <div className="youtube">
-        <Container maxWidth="md">
-          {/* <Search /> */}
-          <SearchBar
-            onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
+  };
+
+  return (
+    <div className="youtube">
+      <Container maxWidth="md">
+        {/* <Search /> */}
+        <SearchBar onSearchTermChange={searchTerm => videoSearch(searchTerm)} />
+        <div className="bg-gray-100 p-2 mb-4 rounded border-2 border-black">
+          <VideoDetail video={selectedVideos} />
+          <VideoList
+            onVideoSelect={userSelected => setVideos(userSelected)}
+            videos={videos}
           />
-          <div className="bg-gray-100 p-2 mb-4 rounded border-2 border-black">
-            <VideoDetail video={this.state.selectedVideo} />
-            <VideoList
-              onVideoSelect={userSelected =>
-                this.setState({ selectedVideo: userSelected })
-              }
-              videos={this.state.videos}
-            />
-          </div>
-        </Container>
-      </div>
-    );
-  }
+        </div>
+      </Container>
+    </div>
+  );
 }
 
 export default Yout;

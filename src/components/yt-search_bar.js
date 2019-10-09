@@ -1,44 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SearchContext } from "../store/Store";
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { term: "" };
-    this.onInputChange = this.onInputChange.bind(this);
-  }
+function SearchBar() {
+  const [query] = useContext(SearchContext);
 
-  onInputChange(event) {
-    this.setState({ term: event.target.value });
-    this.props.onSearchTermChange(event.target.value);
-  }
-
-  render() {
-    return (
-      <div className="search-bar">
-        <input value={this.state.term} onChange={this.onInputChange} />
-      </div>
-    );
-  }
+  return (
+    <div className="search-bar">
+      <input value={query} />
+    </div>
+  );
 }
 
 export default SearchBar;
-
-/* const SearchBar = () => {
-  const { state, actions } = useContext(Context);
-  return (
-    <div className="search-bar">
-      <input
-        value={state.value}
-        onChange={e =>
-          actions({
-            type: "setState",
-            payload: { ...state, value: e.target.value }
-          })
-        }
-        name="searchinput"
-      />
-    </div>
-  );
-};
-
-export default SearchBar; */

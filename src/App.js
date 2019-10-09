@@ -33,10 +33,10 @@ const App = () => {
       <div className="Spotify">
         <SpotifyOwn />
       </div>
-      <div className="Youtube">
+      {/*  <div className="Youtube">
         <Youtube />
-      </div>
-      <h1>The query is {query}!!!!!!!!!!!!</h1> 
+      </div> */}
+      <h1>The query is {query}!!!!!!!!!!!!</h1>
 
       <Wikipedia />
     </div>

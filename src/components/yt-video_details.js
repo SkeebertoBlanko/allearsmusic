@@ -13,7 +13,7 @@ const VideoDetail = props => {
 
   return (
     <div className="video-detail">
-      <h2 class="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
+      <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
         Youtube:{" "}
       </h2>
       <div className="embed-responsive embed-responsive-16by9">

@@ -1,30 +1,23 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
+import { SearchContext } from "./store/Store";
 
-class Wikipedia extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      wikiSearchReturnValues: [],
-      WikiSearchTerms: ""
-    };
-  }
+function Wikipedia(props) {
+  const [query, setQuery] = useContext(SearchContext);
+  const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
+  const [WikiSearchTerms, setWikiSearchTerms] = useState(query);
 
-  useWikiSearchEngine = e => {
+  const useWikiSearchEngine = e => {
     e.preventDefault();
 
-    this.setState({
-      wikiSearchReturnValues: []
-    });
+    setwikiSearchReturnValues([]);
 
-    const pointerToThis = this;
+    let url = "https:en.wikipedia.org/w/api.php";
 
-    var url = "https:en.wikipedia.org/w/api.php";
-
-    var params = {
+    let params = {
       action: "query",
       list: "search",
-      srsearch: this.state.WikiSearchTerms,
+      srsearch: WikiSearchTerms,
       format: "json"
     };
 
@@ -39,7 +32,7 @@ class Wikipedia extends React.Component {
       })
       .then(function(response) {
         for (var key in response.query.search) {
-          pointerToThis.state.wikiSearchReturnValues.push({
+          setwikiSearchReturnValues({
             queryResultPageFullURL: "no link",
             queryResultPageID: response.query.search[key].pageid,
             queryResultPageTitle: response.query.search[key].title,
@@ -48,8 +41,8 @@ class Wikipedia extends React.Component {
         }
       })
       .then(function(response) {
-        for (var key2 in pointerToThis.state.wikiSearchReturnValues) {
-          let page = pointerToThis.state.wikiSearchReturnValues[key2];
+        for (var key2 in wikiSearchReturnValues) {
+          let page = wikiSearchReturnValues[key2];
           let pageID = page.queryResultPageID;
           let urlForRetrievingPageURLByPageID = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&inprop=url&format=json`;
 
@@ -61,59 +54,53 @@ class Wikipedia extends React.Component {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
 
-              pointerToThis.forceUpdate();
+              /*  forceUpdate(); */
             });
         }
       });
   };
 
-  changeWikiSearchTerms = e => {
-    this.setState({
-      WikiSearchTerms: e.target.value
-    });
+  const changeWikiSearchTerms = e => {
+    setWikiSearchTerms(query);
   };
-  render() {
-    let WikiSearchResults = [];
 
-    for (var key3 in this.state.wikiSearchReturnValues) {
-      WikiSearchResults.push(
-        <div className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded" key={key3}>
-          
-            <a
-              href={
-                this.state.wikiSearchReturnValues[key3].queryResultPageFullURL
-              }
-            >
-              <h3>{this.state.wikiSearchReturnValues[key3].queryResultPageTitle}</h3>
+  let WikiSearchResults = [];
+
+  for (var key3 in wikiSearchReturnValues) {
+    setWikiSearchTerms(
+      <div
+        className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded"
+        key={key3}
+      >
+        <a href={wikiSearchReturnValues[key3].queryResultPageFullURL}>
+          <h3>{wikiSearchReturnValues[key3].queryResultPageTitle}</h3>
           <p
             className="description"
             dangerouslySetInnerHTML={{
-              __html: this.state.wikiSearchReturnValues[key3]
-                .queryResultPageSnippet
+              __html: wikiSearchReturnValues[key3].queryResultPageSnippet
             }}
           ></p>
-           </a>
-        </div>
-      );
-    }
-    return (
-      <div className="Wikipedia bg-gray-100 rounded p-2 mb-4 border-2 border-black">
-        <h2>Wikipedia</h2>
-        <form action="">
-          <input
-            type="text"
-            value={this.state.WikiSearchTerms || ""}
-            onChange={this.changeWikiSearchTerms}
-            placeholder="Search Wikipeida Articles"
-          />
-          <button type="submit" onClick={this.useWikiSearchEngine}>
-            Search
-          </button>
-        </form>
-        {WikiSearchResults}
+        </a>
       </div>
     );
   }
+  return (
+    <div className="Wikipedia bg-gray-100 rounded p-2 border-2 border-black">
+      <h2>Wikipedia</h2>
+      <form action="">
+        <input
+          type="text"
+          value={query}
+          onChange={changeWikiSearchTerms}
+          placeholder="Search Wikipeida Articles"
+        />
+        <button type="submit" onClick={useWikiSearchEngine}>
+          Search
+        </button>
+      </form>
+      {WikiSearchResults}
+    </div>
+  );
 }
 
 export default Wikipedia;
