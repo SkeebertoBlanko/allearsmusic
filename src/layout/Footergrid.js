@@ -6,8 +6,9 @@ const Footergrid = () => {
 
   return (
     <>
-      <div className="Footer">
-<h3>Footers</h3>
+      <div className="Footer mt-10 text-center">
+        <hr />
+        <p>vocational school project "AllEarsMusicHeads"<br/><br/>Searchengine for Spotify, Youtube and Wikipedia<br/><br/>by<br/><br/>Andreas Schober</p>
      </div>
     </>
   );

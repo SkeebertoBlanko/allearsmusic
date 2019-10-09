@@ -1,17 +1,15 @@
 import React from "react";
 import "../App.css";
-import List from "../components/list";
-import Search from "../components/search";
 import "./Layout.css";
 const Headergrid = () => {
   return (
     <>
-      <div className="Header">
-        <h1 className="m-2">
-          Please enter the Artist or a Band you want to look up:
+      <div className="Header m-3 tracking-widest">
+        <h1>
+          AllEarsMusicHeads
         </h1>
-        <List />
-        <Search />
+        <p>Searchengine for Spotify, Youtube and Wikipedia</p>
+        <hr />
       </div>
     </>
   );

@@ -25,7 +25,6 @@ const VideoDetail = props => {
       </div>
       <div className="details my-0 bg-gray-500">
         <div>{video.snippet.title}</div>
-        {/* <div>{video.snippet.description}</div> */}
       </div>
     </div>
   );

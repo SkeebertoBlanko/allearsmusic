@@ -2,14 +2,12 @@ import React, { useState, useContext } from "react";
 import "./App.css";
 import { SearchContext } from "./store/Store";
 
-function Wikipedia(props) {
+export function Wikipedia(props) {
   const [query, setQuery] = useContext(SearchContext);
   const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
   const [WikiSearchTerms, setWikiSearchTerms] = useState(query);
 
-  const useWikiSearchEngine = e => {
-    e.preventDefault();
-
+    const useWikiSearchEngine = e => {
     setwikiSearchReturnValues([]);
 
     let url = "https:en.wikipedia.org/w/api.php";
@@ -53,9 +51,8 @@ function Wikipedia(props) {
             .then(function(response) {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
-
-              /*  forceUpdate(); */
             });
+            
         }
       });
   };

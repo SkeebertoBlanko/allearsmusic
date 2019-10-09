@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import SearchBar from "./components/yt-search_bar";
 import YTSearch from "youtube-api-search";
 import VideoList from "./components/yt-video_list";
 import VideoDetail from "./components/yt-video_details";
-import Search from "./components/search";
 import { Container } from "@material-ui/core";
 const API_KEY = "AIzaSyDhrPe0PlzO3AunvP3m0Qwl4Hrz_bMN4yo";
 
@@ -12,7 +11,6 @@ function Yout(props) {
   const [selectedVideos, setSelectedVideo] = useState(null);
   const videoSearch = searchTerm => {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
-      console.log(data);
       setVideos(data);
       setSelectedVideo(data[0]);
     });
@@ -21,7 +19,6 @@ function Yout(props) {
   return (
     <div className="youtube">
       <Container maxWidth="md">
-        {/* <Search /> */}
         <SearchBar onSearchTermChange={searchTerm => videoSearch(searchTerm)} />
         <div className="bg-gray-100 p-2 mb-4 rounded border-2 border-black">
           <VideoDetail video={selectedVideos} />

@@ -27,18 +27,19 @@ const App = () => {
   const [query] = useContext(SearchContext);
   return (
     <div className="flex-container">
-      {/* <Headergrid />
-      <Bodygrid />
-      <Footergrid />*/}
+     <Headergrid />
+      {/*  <Bodygrid />*/}
+      
       <div className="Spotify">
         <SpotifyOwn />
       </div>
-      {/*  <div className="Youtube">
+       <div className="Youtube">
         <Youtube />
-      </div> */}
+      </div>
       <h1>The query is {query}!!!!!!!!!!!!</h1>
 
-      <Wikipedia />
+<Wikipedia />
+<Footergrid />
     </div>
   );
 };

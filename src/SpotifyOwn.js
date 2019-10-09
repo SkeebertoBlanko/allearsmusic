@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
-import Button from "@material-ui/core/Button";
 import Spotify from "spotify-web-api-js";
 import { Container } from "@material-ui/core";
 
 import { SearchContext } from "./store/Store";
-
+import {Wikipedia} from "./Wikipedia";
 /**
  * SpotifyOwn() is the MainFunction for displaying and prozess the Spotify search
  *
@@ -21,12 +20,7 @@ function SpotifyOwn() {
   const [query, setQuery] = useContext(SearchContext);
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
-
-  /**
-   * TODO: displayDiv & dontDisplay
-   */
-  let displayDiv = true;
-  let dontDisplay = false;
+  const [switchDisplay, setswitchDisplay] = useState(true);
 
   /**
    * function getHashParams() for the authorization of SpotifyLogin
@@ -68,7 +62,9 @@ function SpotifyOwn() {
         setAlbums(data.albums.items);
       });
   }
-
+function changeDisplay(){
+  setswitchDisplay(false);
+}
   /**
    *
    *
@@ -76,6 +72,7 @@ function SpotifyOwn() {
   function handleSubmit(e) {
     e.preventDefault();
     fetchSpotifyArtists();
+    changeDisplay();
   }
 
   return (
@@ -108,34 +105,21 @@ function SpotifyOwn() {
        *
        * hidden login for Spotify (needed if no authorization token is stored)
        */}
-      <div className="spotify bg-gray-100 rounded p-2 mb-4 border-2 border-black">
+      <div className={switchDisplay? 'hidden': 'spotify bg-gray-100 rounded p-2 mb-4 border-2 border-black'}>
         <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
           Spotify:
         </h2>
-        {dontDisplay && (
-          <div className="m-3">
-            <a href="http://localhost:8888">
-              <Button variant="contained" color="primary">
-                Login to Spotify
-              </Button>
-            </a>
-          </div>
-        )}
-
         {/**
          * Displaying the found Artists of Spotify
          */}
         <Container maxWidth="md">
           <div
             id="spotify-artist"
-            className="border-2 border-black m-2 bg-gray-300 rounded"
+            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
           >
-            {displayDiv && (
               <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
                 Artists:
               </h3>
-            )}
-
             <div className="flex flex-wrap">
               {artists.map((artist, index) => {
                 const img = artist.images[0];
@@ -179,11 +163,9 @@ function SpotifyOwn() {
             id="spotify-album"
             className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
           >
-            {displayDiv && (
               <h3 className="text-center mx-auto my-2 text-lg font-semibold">
                 Albums:
               </h3>
-            )}
             <div className="flex flex-wrap">
               {albums.map((album, index) => {
                 const imgAlbum = album.images[0];
@@ -222,7 +204,7 @@ function SpotifyOwn() {
   );
 }
 /**
- * render Elements and Functions to create the Website
+ * render Compnents
  */
 
 ReactDOM.render(<SpotifyOwn />, document.getElementById("root"));
