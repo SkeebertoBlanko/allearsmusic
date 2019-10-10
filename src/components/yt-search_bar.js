@@ -6,7 +6,7 @@ function SearchBar() {
 
   return (
     <div className="search-bar">
-      <input value={query} />
+      <input value={query} onChange={function() {}} />
     </div>
   );
 }

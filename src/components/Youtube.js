@@ -1,20 +1,24 @@
-import React, {  useState } from "react";
-import SearchBar from "./components/yt-search_bar";
+import React, { useState } from "react";
+import SearchBar from "./yt-search_bar";
 import YTSearch from "youtube-api-search";
-import VideoList from "./components/yt-video_list";
-import VideoDetail from "./components/yt-video_details";
+import VideoList from "./yt-video_list";
+import VideoDetail from "./yt-video_details";
 import { Container } from "@material-ui/core";
-const API_KEY = "AIzaSyDhrPe0PlzO3AunvP3m0Qwl4Hrz_bMN4yo";
+/* import { SearchContext } from "../store/Store"; */
+const API_KEY = "AIzaSyDgM3087-KiceH8EbAgdmsw311gmMBfVw";
 
-function Yout(props) {
+function Yout() {
+  /* const [query, setQuery] = useContext(SearchContext); */
   const [videos, setVideos] = useState([]);
   const [selectedVideos, setSelectedVideo] = useState(null);
+
   const videoSearch = searchTerm => {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
       setVideos(data);
       setSelectedVideo(data[0]);
     });
   };
+  videoSearch(" ");
 
   return (
     <div className="youtube">

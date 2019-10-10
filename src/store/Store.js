@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 export const SearchContext = React.createContext("");
 
 const Store = ({ children }) => {
