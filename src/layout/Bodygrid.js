@@ -11,9 +11,9 @@ const Bodygrid = () => {
         <div className="Spotify">
           <SpotifyOwn />
         </div>
-        <div className="Youtube">
+        {/* <div className="Youtube">
           <Youtube />
-        </div>
+        </div> */}
         <div className="Wikipedia">
           <Wikipedia />
         </div>
