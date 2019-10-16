@@ -1,6 +1,16 @@
 import React from "react";
-
+/**
+ * @name yt-vidoe_list_item.js (Youtube)
+ * @author Schober Andreas
+ * @const VideoListItem: creates the the small related videos inside of list-elements
+ * @return: the list-elements displaying the suggested and most related videos to our search string
+ */
 const VideoListItem = props => {
+  /**
+   * @const video: contains the props of the video
+   * @const onUserSelected: to selec another video
+   * @const imageUrl: contains the image URL
+   */
   const video = props.video;
   const onUserSelected = props.onUserSelected;
   const imageUrl = video.snippet.thumbnails.medium.url;

@@ -13,6 +13,7 @@ import "./layout/Layout.css";
 import Headergrid from "./layout/Headergrid";
 import Bodygrid from "./layout/Bodygrid";
 import Footergrid from "./layout/Footergrid";
+
 /* import { SearchContext } from "./store/Store"; */
 
 /* import SpotifyOwn from "./components/SpotifyOwn";
@@ -20,7 +21,10 @@ import Youtube from "./components/Youtube";
 import Wikipedia from "./components/Wikipedia"; */
 
 /**
- * Main Function of App.js where all Components are put together to create the finished website:
+ * @name App.js (Layout)
+ * @author Schober Andreas
+ * @const App: combine the needed layout components and provides the flex-container to create the website
+ * @return: all needed components
  */
 const App = () => {
   /* const [query] = useContext(SearchContext); */

@@ -4,13 +4,22 @@ import ReactDOM from "react-dom";
 import Spotify from "spotify-web-api-js";
 import { Container } from "@material-ui/core";
 import { SearchContext } from "../store/Store";
+/* import { Wikipedia } from "./Wikipedia"; */
+
 /**
- * SpotifyOwn() is the MainFunction for displaying and prozess the Spotify search
+ * @name SpotifyOwn.js
+ * @author Schober Andreas
+ * @function SpotifyOwn(): is one of the two MainFunctions (besides App.js) for displaying and process the Spotify search
+ *                         it also contains the input field for the global query string
  *
  */
+
 function SpotifyOwn() {
   /**
-   * needed constants and variables for SpotifyOwn.js
+   * @hooks [artists, setArtists], [albums, setAlbums], [switchDisplay, setswitchDisplay] to define constants and states for creating the Youtube component
+   * @hook [query,setQuery] = global state to provide the search string for all input fields
+   * @const spotifyWebApi: new Spotify instance
+   * @const params: needed parameters from Spotify also used for authorization
    */
   const spotifyWebApi = new Spotify();
   const params = getHashParams();
@@ -20,7 +29,7 @@ function SpotifyOwn() {
   const [switchDisplay, setswitchDisplay] = useState(true);
 
   /**
-   * function getHashParams() for the authorization of SpotifyLogin
+   * @function getHashParams(): get needed parameters from Spotify also needed for authorization
    */
   function getHashParams() {
     var hashParams = {};
@@ -42,7 +51,7 @@ function SpotifyOwn() {
   }
 
   /**
-   * function fetchSpotifyArtists() for searching Spotify Artists and Albums
+   * @function fetchSpotifyArtists(): fetch API data for the look up of Spotify artists and albums
    */
   function fetchSpotifyArtists() {
     let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=4`;
@@ -58,24 +67,30 @@ function SpotifyOwn() {
         setAlbums(data.albums.items);
       });
   }
+
+  /**
+   * @function changeDisplay(): switch state to display html on website after button click
+   */
   function changeDisplay() {
     setswitchDisplay(false);
   }
+
   /**
-   *
-   *
+   * @function handleSubmit(e): handle the submit and trigger the functions fetchSpotifyArtists(); and changeDisplay(); to display the data
+   * @param {Event} e:
    */
   function handleSubmit(e) {
     e.preventDefault();
     fetchSpotifyArtists();
     changeDisplay();
   }
-
+  /**
+   * @return: the input field which contains the global query string aswell as display the found artits and albums of Spotify
+   */
   return (
     <div>
       {/**
-       * Display the Searchinputfield
-       *
+       * input field for global query string
        */}
       <div id="input_search" className="searchinput">
         <div className="searchconsole">
@@ -97,22 +112,19 @@ function SpotifyOwn() {
           </form>
         </div>
       </div>
-      {/**
-       *
-       * hidden login for Spotify (needed if no authorization token is stored)
-       */}
+
       <div
         className={
           switchDisplay
             ? "hidden"
-            : "spotify bg-gray-100 rounded p-2 mb-4 border-2 border-black"
+            : "spotify bg-gray-100 rounded p-2 m-4 border-2 border-black"
         }
       >
         <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
           Spotify:
         </h2>
         {/**
-         * Displaying the found Artists of Spotify
+         * display Spotify artists
          */}
         <Container maxWidth="md">
           <div
@@ -156,9 +168,8 @@ function SpotifyOwn() {
             </div>
           </div>
         </Container>
-
         {/**
-         * Displaying the found Albums of Spotify
+         * display Spotify albums
          */}
         <Container maxWidth="md">
           <div
@@ -205,9 +216,6 @@ function SpotifyOwn() {
     </div>
   );
 }
-/**
- * render Compnents
- */
 
 ReactDOM.render(<SpotifyOwn />, document.getElementById("root"));
 export default SpotifyOwn;

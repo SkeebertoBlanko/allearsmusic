@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 
-class Wikipedia extends React.Component {
+class Wikipediab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,6 @@ class Wikipedia extends React.Component {
 
   useWikiSearchEngine = e => {
     e.preventDefault();
-
     this.setState({
       wikiSearchReturnValues: []
     });
@@ -53,6 +52,7 @@ class Wikipedia extends React.Component {
           let pageID = page.queryResultPageID;
           let urlForRetrievingPageURLByPageID = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&inprop=url&format=json`;
 
+          console.log("PAGE: " + page); // [object Object]
           fetch(urlForRetrievingPageURLByPageID)
             .then(function(response) {
               return response.json();
@@ -61,6 +61,8 @@ class Wikipedia extends React.Component {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
 
+              console.log("fullurl: " + response.query.pages[pageID].fullurl);
+              console.log("fullurl page.: " + page.queryResultPageFullURL);
               pointerToThis.forceUpdate();
             });
         }
@@ -74,25 +76,30 @@ class Wikipedia extends React.Component {
   };
   render() {
     let WikiSearchResults = [];
+    console.log("wikiSearchReturnValues: " + this.state.wikiSearchReturnValues);
 
     for (var key3 in this.state.wikiSearchReturnValues) {
       WikiSearchResults.push(
-        <div className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded" key={key3}>
-          
-            <a
-              href={
-                this.state.wikiSearchReturnValues[key3].queryResultPageFullURL
-              }
-            >
-              <h3>{this.state.wikiSearchReturnValues[key3].queryResultPageTitle}</h3>
-          <p
-            className="description"
-            dangerouslySetInnerHTML={{
-              __html: this.state.wikiSearchReturnValues[key3]
-                .queryResultPageSnippet
-            }}
-          ></p>
-           </a>
+        <div
+          className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded"
+          key={key3}
+        >
+          <a
+            href={
+              this.state.wikiSearchReturnValues[key3].queryResultPageFullURL
+            }
+          >
+            <h3>
+              {this.state.wikiSearchReturnValues[key3].queryResultPageTitle}
+            </h3>
+            <p
+              className="description"
+              dangerouslySetInnerHTML={{
+                __html: this.state.wikiSearchReturnValues[key3]
+                  .queryResultPageSnippet
+              }}
+            ></p>
+          </a>
         </div>
       );
     }
@@ -104,7 +111,7 @@ class Wikipedia extends React.Component {
             type="text"
             value={this.state.WikiSearchTerms || ""}
             onChange={this.changeWikiSearchTerms}
-            placeholder="Search Wikipeida Articles"
+            placeholder="Search Wikipedia Articles"
           />
           <button type="submit" onClick={this.useWikiSearchEngine}>
             Search
@@ -116,4 +123,4 @@ class Wikipedia extends React.Component {
   }
 }
 
-export default Wikipedia;
+export default Wikipediab;

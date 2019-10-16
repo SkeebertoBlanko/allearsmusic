@@ -1,0 +1,11 @@
+Youtube API: 
+XHR GET https://www.googleapis.com/youtube/v3/search...
+gets triggered through onSearchTermChange() --> current problem with function based component (infinite loop / infinite api calls)
+
+
+
+Wikipedia API:
+<a href={wikiSearchReturnValues[key3].queryResultPageFullURL}> href doesn't get set, it stays at "no link".
+Error --> wikiSearchReturnValues = [object Object],[object Object],[object Object],[object Object]... 
+
+Articles are shown but can't be opened with Wikipedialink
