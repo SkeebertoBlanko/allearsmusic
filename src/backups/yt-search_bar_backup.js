@@ -15,11 +15,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <input
-          className="p-2 my-2 mx-auto rounded shadow-lg w-3/5"
-          value={this.state.term}
-          onChange={this.onInputChange}
-        />
+        <input value={this.state.term} onChange={this.onInputChange} />
       </div>
     );
   }

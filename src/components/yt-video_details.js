@@ -1,7 +1,17 @@
 import React from "react";
 import "../App.css";
-
+/**
+ * @name yt-search_details.js (Youtube)
+ * @author Schober Andreas
+ * @const VideoDetail: creates the bigger Youtube video for display and show the video title
+ * @return: the heading, the preview video aswell as the title of the video
+ */
 const VideoDetail = props => {
+  /**
+   * @const video: contains the props of the video
+   * @const videoId: contains the video ID
+   * @const url: contains the basic Youtube URL + the video ID
+   */
   const video = props.video;
 
   if (!video) {

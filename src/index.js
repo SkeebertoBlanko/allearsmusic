@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import Store from "./store/Store";
-
-import useGlobalState from "./store/useGlobalState";
-import Context from "./store/context";
-
+/**
+ * @name Index.js
+ * @author Schober Andreas
+ * @const Index: wrap <Store> component around the rendered <App> component to provide the global state (for the query) to all components inside <App>
+ *
+ * @return: display footer
+ */
 const Index = () => {
   return (
     <Store>

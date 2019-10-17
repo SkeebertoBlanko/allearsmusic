@@ -1,23 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, forceUpdate } from "react";
 import { SearchContext } from "../store/Store";
 import "../App.css";
 
-function Wikipedia(props) {
+/**
+ * @name Wikipedia.js
+ * @author Schober Andreas
+ * @function Wikipedia(): contains all needed parameters (like React Hooks) to create the Wikipedia component
+ *                   and it's functionallity
+ *
+ */
+function Wikipedia() {
+  /**
+   * @hooks [WikiSearchTerms, setWikiSearchTerms], [wikiSearchReturnValues, setwikiSearchReturnValues] to define constants and states for creating the Youtube component
+   *
+   * @hook [query,setQuery] = global state to provide the search string for all input fields
+   */
   const [query] = useContext(SearchContext);
   const [WikiSearchTerms, setWikiSearchTerms] = useState(query); // useState("query");
   const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
 
+  /**
+   * @const useWikiSearchEngine: fetches all the data from the API and creates the needed URL
+   * @param {Event} e: the functions and fetches inside useWikiSearchEngine are triggerd through the onClick event
+   */
   const useWikiSearchEngine = e => {
     e.preventDefault();
-
-    setwikiSearchReturnValues([]);
+    setwikiSearchReturnValues(query);
 
     var url = "https:en.wikipedia.org/w/api.php";
 
     var params = {
       action: "query",
       list: "search",
-      srsearch: WikiSearchTerms,
+      srsearch: query,
       format: "json"
     };
 
@@ -40,7 +55,7 @@ function Wikipedia(props) {
             queryResultPageSnippet: response.query.search[key].snippet
           });
         }
-        setwikiSearchReturnValues(temp); // wikiSearchReturnValues(temp); --> not a function
+        setwikiSearchReturnValues(temp);
       })
       .then(function(response) {
         for (var key2 in wikiSearchReturnValues) {
@@ -48,27 +63,37 @@ function Wikipedia(props) {
           let pageID = page.queryResultPageID;
           let urlForRetrievingPageURLByPageID = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&inprop=url&format=json`;
 
+          console.log("PAGE2: " + page);
           fetch(urlForRetrievingPageURLByPageID)
             .then(function(response) {
               return response.json();
             })
+
             .then(function(response) {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
 
-              /*  page.queryResultPageFullUR.forceUpdate(); // pointerToThis.forceUpdate(); */
+              console.log("fullurl 2: " + response.query.pages[pageID].fullurl);
+              console.log("fullurl page2.: " + page.queryResultPageFullURL);
+
+              // pointerToThis.forceUpdate(); */
             });
         }
       });
   };
 
-  const changeWikiSearchTerms = e => {
+  /**
+   * @const changeWikiSearchTerms: update search string
+   */
+  const changeWikiSearchTerms = () => {
     setWikiSearchTerms(query);
   };
 
-  // ----
-
+  /**
+   * create the output for the Wikipedia search results, which will be returned within WikiSearchResults
+   */
   let WikiSearchResults = [];
+  console.log("wikiSearchReturnValues 2: " + wikiSearchReturnValues);
 
   for (var key3 in wikiSearchReturnValues) {
     WikiSearchResults.push(
@@ -88,15 +113,18 @@ function Wikipedia(props) {
       </div>
     );
   }
+  /**
+   * @return: the (hidden) input field and display the found search results
+   */
   return (
-    <div className="Wikipedia bg-gray-100 rounded p-2 border-2 border-black">
-      <h2>Wikipedia</h2>
+    <div className="Wikipedia bg-gray-100 rounded p-2 border-2 border-black m-4">
+      <h2>Wikipedia</h2>{" "}
       <form action="">
         <input
           type="text"
           value={query}
           onChange={changeWikiSearchTerms}
-          placeholder="Search Wikipeida Articles"
+          placeholder="Search Wikipedia Articles"
         />
         <button type="submit" onClick={useWikiSearchEngine}>
           Search

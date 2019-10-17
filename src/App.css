@@ -1,5 +1,10 @@
+/**
+ * @name App.css
+ * @author Schober Andreas
+ * Contains basic CSS needed for the layout and design of the website
+ */
+
 .search-bar {
-  margin: 0.5em;
   text-align: center;
 }
 
@@ -9,7 +14,7 @@
 }
 
 .video-item img {
-  max-width: 64px;/*4em*/
+  max-width: 64px; /*4em*/
 }
 
 .video-detail .details {
@@ -25,18 +30,19 @@
 }
 
 .media-left {
-  width: 50px;/*3em*/
+  width: 50px; /*3em*/
   height: 50px;
   border: 1px solid black;
 }
-.list-group-item, .searchResultDiv,.video-detail .details {
+.list-group-item,
+.searchResultDiv,
+.video-detail .details {
   cursor: pointer;
 }
 
 .App {
   text-align: center;
 }
-
 
 @keyframes App-logo-spin {
   from {
@@ -68,7 +74,7 @@ body > * {
   vertical-align: middle;
 }
 hr {
-  border-width:4px;
+  border-width: 4px;
 }
 
 /* CSS for Searchconsole*/
@@ -92,7 +98,6 @@ hr {
   min-width: 50%;
 }
 
-
 /*WIKIPEDIA*/
 
 .searchResultDiv {
@@ -100,7 +105,7 @@ hr {
   padding: 1em;
   text-align: left;
 
-/*   border:1px solid black;
+  /*   border:1px solid black;
   border-radius: 5px; */
 }
 .searchResultDiv h3 {
@@ -114,13 +119,15 @@ hr {
 
 .searchResultDiv a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 .searchResultDiv a:hover {
- color:blue;
+  color: blue;
 }
 
 .searchResultDiv .link a:hover {
   text-decoration: none;
 }
-.hidden { display:none; }
+.hidden {
+  display: none;
+}
