@@ -3,7 +3,6 @@ import "../App.css";
 import SpotifyOwn from "../components/SpotifyOwn";
 import Youtube from "../components/Youtube";
 import Wikipedia from "../components/Wikipedia";
-import Wikipediab from "../backups/wikipedia_backup";
 import "./Layout.css";
 /**
  * @name Bodygrid.js (Layout)
@@ -16,7 +15,7 @@ const Bodygrid = () => {
   return (
     <>
       <div className="Body">
-        <div className="Spotify">
+        <div className="Spotify ">
           <SpotifyOwn />
         </div>
         <div className="Youtube">
@@ -24,9 +23,6 @@ const Bodygrid = () => {
         </div>
         <div className="Wikipedia">
           <Wikipedia />
-        </div>
-        <div className="Wikipedia">
-          <Wikipediab />
         </div>
       </div>
     </>

@@ -1,8 +1,8 @@
 import React from "react";
 /**
- * @name yt-vidoe_list_item.js (Youtube)
+ * @name yt-vidoe_list_item.js (Youtube.js)
  * @author Schober Andreas
- * @const VideoListItem: creates the the small related videos inside of list-elements
+ * @const VideoListItem: creates the the small related videos inside of list-elements for the parent component Youtube
  * @return: the list-elements displaying the suggested and most related videos to our search string
  */
 const VideoListItem = props => {

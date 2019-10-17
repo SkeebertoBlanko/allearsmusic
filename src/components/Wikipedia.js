@@ -1,38 +1,40 @@
-import React, { useState, useContext, forceUpdate } from "react";
-import { SearchContext } from "../store/Store";
+import React from "react";
 import "../App.css";
-
 /**
  * @name Wikipedia.js
  * @author Schober Andreas
- * @function Wikipedia(): contains all needed parameters (like React Hooks) to create the Wikipedia component
- *                   and it's functionallity
- *
+ * @class Wikipedia: provides all needed states and constants for the look up at Wikipedia
+ * @return: all needed components and found search results
  */
-function Wikipedia() {
-  /**
-   * @hooks [WikiSearchTerms, setWikiSearchTerms], [wikiSearchReturnValues, setwikiSearchReturnValues] to define constants and states for creating the Youtube component
-   *
-   * @hook [query,setQuery] = global state to provide the search string for all input fields
-   */
-  const [query] = useContext(SearchContext);
-  const [WikiSearchTerms, setWikiSearchTerms] = useState(query); // useState("query");
-  const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
+class Wikipedia extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      wikiSearchReturnValues: [],
+      WikiSearchTerms: ""
+    };
+  }
 
   /**
-   * @const useWikiSearchEngine: fetches all the data from the API and creates the needed URL
+   * @function useWikiSearchEngine(e): fetches all the data from the API and creates the needed URL, it is basically the MainClass for Wikipedia
    * @param {Event} e: the functions and fetches inside useWikiSearchEngine are triggerd through the onClick event
+   *
    */
-  const useWikiSearchEngine = e => {
+  useWikiSearchEngine = e => {
     e.preventDefault();
-    setwikiSearchReturnValues(query);
+    this.setState({
+      wikiSearchReturnValues: []
+    });
 
+    /**
+     * needed constants and variable for Wikipedia
+     */
+    const pointerToThis = this;
     var url = "https:en.wikipedia.org/w/api.php";
-
     var params = {
       action: "query",
       list: "search",
-      srsearch: query,
+      srsearch: this.state.WikiSearchTerms,
       format: "json"
     };
 
@@ -46,93 +48,103 @@ function Wikipedia() {
         return response.json();
       })
       .then(function(response) {
-        let temp = [];
         for (var key in response.query.search) {
-          temp.push({
+          pointerToThis.state.wikiSearchReturnValues.push({
             queryResultPageFullURL: "no link",
             queryResultPageID: response.query.search[key].pageid,
             queryResultPageTitle: response.query.search[key].title,
             queryResultPageSnippet: response.query.search[key].snippet
           });
         }
-        setwikiSearchReturnValues(temp);
       })
       .then(function(response) {
-        for (var key2 in wikiSearchReturnValues) {
-          let page = wikiSearchReturnValues[key2];
+        for (var key2 in pointerToThis.state.wikiSearchReturnValues) {
+          let page = pointerToThis.state.wikiSearchReturnValues[key2];
           let pageID = page.queryResultPageID;
           let urlForRetrievingPageURLByPageID = `https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=info&pageids=${pageID}&inprop=url&format=json`;
 
-          console.log("PAGE2: " + page);
+          console.log("PAGE: " + page); // [object Object]
           fetch(urlForRetrievingPageURLByPageID)
             .then(function(response) {
               return response.json();
             })
-
             .then(function(response) {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
 
-              console.log("fullurl 2: " + response.query.pages[pageID].fullurl);
-              console.log("fullurl page2.: " + page.queryResultPageFullURL);
-
-              // pointerToThis.forceUpdate(); */
+              console.log("fullurl: " + response.query.pages[pageID].fullurl);
+              console.log("fullurl page.: " + page.queryResultPageFullURL);
+              pointerToThis.forceUpdate();
             });
         }
       });
   };
 
   /**
-   * @const changeWikiSearchTerms: update search string
+   * @function changeWikiSearchTerms(): set the search term for Wikipedia to the current value of the input field
+   * @param {Event} e
    */
-  const changeWikiSearchTerms = () => {
-    setWikiSearchTerms(query);
+  changeWikiSearchTerms = e => {
+    this.setState({
+      WikiSearchTerms: e.target.value
+    });
   };
 
   /**
-   * create the output for the Wikipedia search results, which will be returned within WikiSearchResults
+   * the displayed articles are build inside the render()-function and filled with the needed data
    */
-  let WikiSearchResults = [];
-  console.log("wikiSearchReturnValues 2: " + wikiSearchReturnValues);
+  render() {
+    let WikiSearchResults = [];
+    console.log("wikiSearchReturnValues: " + this.state.wikiSearchReturnValues);
 
-  for (var key3 in wikiSearchReturnValues) {
-    WikiSearchResults.push(
-      <div
-        className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded"
-        key={key3}
-      >
-        <a href={wikiSearchReturnValues[key3].queryResultPageFullURL}>
-          <h3>{wikiSearchReturnValues[key3].queryResultPageTitle}</h3>
-          <p
-            className="description"
-            dangerouslySetInnerHTML={{
-              __html: wikiSearchReturnValues[key3].queryResultPageSnippet
-            }}
-          ></p>
-        </a>
+    for (var key3 in this.state.wikiSearchReturnValues) {
+      WikiSearchResults.push(
+        <div
+          className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded"
+          key={key3}
+        >
+          <a
+            href={
+              this.state.wikiSearchReturnValues[key3].queryResultPageFullURL
+            }
+          >
+            <h3>
+              {this.state.wikiSearchReturnValues[key3].queryResultPageTitle}
+            </h3>
+            <p
+              className="description"
+              dangerouslySetInnerHTML={{
+                __html: this.state.wikiSearchReturnValues[key3]
+                  .queryResultPageSnippet
+              }}
+            ></p>
+          </a>
+        </div>
+      );
+    }
+    return (
+      <div className="Wikipedia bg-gray-100 rounded p-2 m-4 border-2 border-black">
+        <h2>Wikipedia</h2>
+        <form className="search-bar">
+          <input
+            type="text"
+            className="p-2 my-2 mx-auto rounded shadow-lg w-3/5"
+            value={this.state.WikiSearchTerms || ""}
+            onChange={this.changeWikiSearchTerms}
+            placeholder="Search Wikipedia Articles"
+          />
+          <button
+            className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
+            type="submit"
+            onClick={this.useWikiSearchEngine}
+          >
+            Search
+          </button>
+        </form>
+        {WikiSearchResults}
       </div>
     );
   }
-  /**
-   * @return: the (hidden) input field and display the found search results
-   */
-  return (
-    <div className="Wikipedia bg-gray-100 rounded p-2 border-2 border-black m-4">
-      <h2>Wikipedia</h2>{" "}
-      <form action="">
-        <input
-          type="text"
-          value={query}
-          onChange={changeWikiSearchTerms}
-          placeholder="Search Wikipedia Articles"
-        />
-        <button type="submit" onClick={useWikiSearchEngine}>
-          Search
-        </button>
-      </form>
-      {WikiSearchResults}
-    </div>
-  );
 }
 
 export default Wikipedia;

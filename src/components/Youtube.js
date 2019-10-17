@@ -3,8 +3,13 @@ import SearchBar from "./yt-search_bar";
 import YTSearch from "youtube-api-search";
 import VideoList from "./yt-video_list";
 import VideoDetail from "./yt-video_details";
-
-const API_KEY = "AIzaSyAdfG9Dr9W9nKQ39TDpmBbjjSIqYMlOZPk";
+/**
+ * @name Youtube.js
+ * @author Schober Andreas
+ * @class Yout: provides all needed states and constants for the look up at Youtube
+ * @return: all needed components and found search results
+ */
+const API_KEY = "AIzaSyDr69Gto8ZjwPyvh8oslPW4lpfYw4Ql6O4";
 class Yout extends Component {
   constructor(props) {
     super(props);
@@ -19,14 +24,21 @@ class Yout extends Component {
     this.videoSearch("");
   }
 
+  /**
+   * @function addActiveClass(): needed to switch from not displaying to displaying the search results
+   */
   addActiveClass() {
     this.setState({
       isActive: true
     });
   }
+
+  /**
+   * @function videoSearch(): fetch data from Youtube and provide the needed API_KEY
+   * @param {searchTerm}
+   */
   videoSearch(searchTerm) {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
-      console.log(data);
       this.setState({
         videos: data,
         selectedVideo: data[0]
@@ -36,11 +48,21 @@ class Yout extends Component {
 
   render() {
     return (
-      <div className="youtube">
-        <SearchBar
-          onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
-        />
-        <button onClick={this.addActiveClass}>Show</button>
+      <div className="youtube bg-gray-100 rounded p-2 m-4 border-2 border-black">
+        <h2>Youtube</h2>
+        <form className="search-bar">
+          <SearchBar
+            className="w-3/5"
+            onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
+          />
+          <button
+            type="submit"
+            className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
+            onClick={this.addActiveClass}
+          >
+            Search
+          </button>
+        </form>
         <div
           className={
             this.state.isActive

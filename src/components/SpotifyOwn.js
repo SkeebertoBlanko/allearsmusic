@@ -11,7 +11,6 @@ import { SearchContext } from "../store/Store";
  * @author Schober Andreas
  * @function SpotifyOwn(): is one of the two MainFunctions (besides App.js) for displaying and process the Spotify search
  *                         it also contains the input field for the global query string
- *
  */
 
 function SpotifyOwn() {
@@ -54,7 +53,7 @@ function SpotifyOwn() {
    * @function fetchSpotifyArtists(): fetch API data for the look up of Spotify artists and albums
    */
   function fetchSpotifyArtists() {
-    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=4`;
+    let url = `https://api.spotify.com/v1/search?q=${query}&type=artist,album&limit=6`;
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -88,13 +87,14 @@ function SpotifyOwn() {
    * @return: the input field which contains the global query string aswell as display the found artits and albums of Spotify
    */
   return (
-    <div>
+    <div className="bg-gray-100 rounded p-2 m-4 border-2 border-black">
       {/**
        * input field for global query string
        */}
       <div id="input_search" className="searchinput">
         <div className="searchconsole">
-          <form className="" onSubmit={handleSubmit}>
+          <h2>Spotify</h2>
+          <form className="search-bar" onSubmit={handleSubmit}>
             <input
               type="text"
               autoFocus
@@ -102,6 +102,7 @@ function SpotifyOwn() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               name="searchinput"
+              placeholder="Search Spotify Artists and Albums"
             />
             <button
               type="submit"
@@ -113,20 +114,11 @@ function SpotifyOwn() {
         </div>
       </div>
 
-      <div
-        className={
-          switchDisplay
-            ? "hidden"
-            : "spotify bg-gray-100 rounded p-2 m-4 border-2 border-black"
-        }
-      >
-        <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
-          Spotify:
-        </h2>
+      <div className={switchDisplay ? "hidden" : "spotify"}>
         {/**
          * display Spotify artists
          */}
-        <Container maxWidth="md">
+        <Container maxWidth="md" className="my-3">
           <div
             id="spotify-artist"
             className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
@@ -143,7 +135,7 @@ function SpotifyOwn() {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(artist) || (
-                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                    <div className="w-1/2 mb-3 text-center p-1" key={index}>
                       <a
                         href={artistURL}
                         alt={artistURL}
@@ -171,7 +163,7 @@ function SpotifyOwn() {
         {/**
          * display Spotify albums
          */}
-        <Container maxWidth="md">
+        <Container maxWidth="md" className="my-3">
           <div
             id="spotify-album"
             className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
@@ -188,7 +180,7 @@ function SpotifyOwn() {
                   : "https://placekitten.com/g/100/100";
                 return (
                   console.log(albums) || (
-                    <div className="w-1/2 mb-2 text-center p-1" key={index}>
+                    <div className="w-1/2 mb-3 text-center p-1" key={index}>
                       <a
                         href={albumURL}
                         alt={albumURL}
