@@ -4,12 +4,13 @@ import YTSearch from "youtube-api-search";
 import VideoList from "./yt-video_list";
 import VideoDetail from "./yt-video_details";
 /**
- * @name Youtube.js
+ * @name Youtube.js (MainComponent)
  * @author Schober Andreas
  * @class Yout: provides all needed states and constants for the look up at Youtube
  * @return: all needed components and found search results
+ * @const API_KEY for Youtube
  */
-const API_KEY = "AIzaSyDr69Gto8ZjwPyvh8oslPW4lpfYw4Ql6O4";
+const API_KEY = "AIzaSyDgM3087-KiceH8EbAgdmsw311gmMBfVwk";
 class Yout extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,7 @@ class Yout extends Component {
 
   /**
    * @function videoSearch(): fetch data from Youtube and provide the needed API_KEY
-   * @param {searchTerm}
+   * @param {searchTerm}: containts the search string
    */
   videoSearch(searchTerm) {
     YTSearch({ key: API_KEY, term: searchTerm }, data => {
@@ -48,7 +49,7 @@ class Yout extends Component {
 
   render() {
     return (
-      <div className="youtube bg-gray-100 rounded p-2 m-4 border-2 border-black">
+      <div className="youtube bg-gray-100 rounded p-2 pb-6 m-4 border-2 border-black">
         <h2>Youtube</h2>
         <form className="search-bar">
           <SearchBar
@@ -60,7 +61,7 @@ class Yout extends Component {
             className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
             onClick={this.addActiveClass}
           >
-            Search
+            Suche
           </button>
         </form>
         <div

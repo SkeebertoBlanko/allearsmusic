@@ -1,7 +1,7 @@
 import React from "react";
 import VideoListItem from "./yt-video_list_item";
 /**
- * @name yt-video_list.js (Youtube)
+ * @name yt-video_list.js (Youtube.js component)
  * @author Schober Andreas
  * @const VideoList: creates the <ul>-container for displaying the <li>-items of yt-video_list_item.js
  * @return: the <ul>-container + the videos

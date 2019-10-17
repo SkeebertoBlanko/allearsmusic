@@ -4,13 +4,13 @@ import ReactDOM from "react-dom";
 import Spotify from "spotify-web-api-js";
 import { Container } from "@material-ui/core";
 import { SearchContext } from "../store/Store";
-/* import { Wikipedia } from "./Wikipedia"; */
 
 /**
- * @name SpotifyOwn.js
+ * @name SpotifyOwn.js (MainComponent)
  * @author Schober Andreas
  * @function SpotifyOwn(): is one of the two MainFunctions (besides App.js) for displaying and process the Spotify search
  *                         it also contains the input field for the global query string
+ * @retrun the input field which contains the query string aswell as display the found artists and albums of Spotify
  */
 
 function SpotifyOwn() {
@@ -76,20 +76,18 @@ function SpotifyOwn() {
 
   /**
    * @function handleSubmit(e): handle the submit and trigger the functions fetchSpotifyArtists(); and changeDisplay(); to display the data
-   * @param {Event} e:
+   * @param {Event} e: triggers with an event (like onClick)
    */
   function handleSubmit(e) {
     e.preventDefault();
     fetchSpotifyArtists();
     changeDisplay();
   }
-  /**
-   * @return: the input field which contains the global query string aswell as display the found artits and albums of Spotify
-   */
+
   return (
     <div className="bg-gray-100 rounded p-2 m-4 border-2 border-black">
       {/**
-       * input field for global query string
+       * input field for query string
        */}
       <div id="input_search" className="searchinput">
         <div className="searchconsole">
@@ -108,7 +106,7 @@ function SpotifyOwn() {
               type="submit"
               className="my-2 bg-indigo-700 text-blue-100 p-2 rounded shadow-lg"
             >
-              Search
+              Suche
             </button>
           </form>
         </div>
@@ -121,7 +119,7 @@ function SpotifyOwn() {
         <Container maxWidth="md" className="my-3">
           <div
             id="spotify-artist"
-            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
+            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded flex flex-wrap"
           >
             <h3 className="text-center mx-auto my-2 text-lg font-semibold tracking-wider">
               Artists:
@@ -166,7 +164,7 @@ function SpotifyOwn() {
         <Container maxWidth="md" className="my-3">
           <div
             id="spotify-album"
-            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded"
+            className="border-2 border-black m-2 tracking-wider bg-gray-300 rounded flex flex-wrap"
           >
             <h3 className="text-center mx-auto my-2 text-lg font-semibold">
               Albums:
@@ -177,7 +175,7 @@ function SpotifyOwn() {
                 const albumURL = album.external_urls.spotify;
                 const imgUrlAlbum = imgAlbum
                   ? imgAlbum.url
-                  : "https://placekitten.com/g/100/100";
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(albums) || (
                     <div className="w-1/2 mb-3 text-center p-1" key={index}>

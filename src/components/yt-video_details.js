@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 /**
- * @name yt-search_details.js (Youtube.js)
+ * @name yt-search_details.js (Youtube.js component)
  * @author Schober Andreas
  * @const VideoDetail: creates the bigger Youtube video for display and show the video title for the parent component Youtube
  * @return: the heading, the preview video aswell as the title of the video

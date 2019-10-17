@@ -1,6 +1,6 @@
 import React from "react";
 /**
- * @name yt-searc_bar.js (Youtube.js)
+ * @name yt-searc_bar.js (Youtube.js component)
  * @author Schober Andreas
  * @class SearchBar: provides the functionallity of the search bar for the parent component Youtube
  * @return: all needed components and data

@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 /**
- * @name Wikipedia.js
+ * @name Wikipedia.js (MainComponent)
  * @author Schober Andreas
  * @class Wikipedia: provides all needed states and constants for the look up at Wikipedia
  * @return: all needed components and found search results
@@ -27,7 +27,7 @@ class Wikipedia extends React.Component {
     });
 
     /**
-     * needed constants and variable for Wikipedia
+     * needed constants and variables for Wikipedia
      */
     const pointerToThis = this;
     var url = "https:en.wikipedia.org/w/api.php";
@@ -82,7 +82,7 @@ class Wikipedia extends React.Component {
 
   /**
    * @function changeWikiSearchTerms(): set the search term for Wikipedia to the current value of the input field
-   * @param {Event} e
+   * @param {Event} e: triggers with an event (like onClick)
    */
   changeWikiSearchTerms = e => {
     this.setState({
@@ -91,7 +91,7 @@ class Wikipedia extends React.Component {
   };
 
   /**
-   * the displayed articles are build inside the render()-function and filled with the needed data
+   * the displayed articles are build inside the render()-function and filled with the needed data from the API
    */
   render() {
     let WikiSearchResults = [];
@@ -107,6 +107,7 @@ class Wikipedia extends React.Component {
             href={
               this.state.wikiSearchReturnValues[key3].queryResultPageFullURL
             }
+            target="blank"
           >
             <h3>
               {this.state.wikiSearchReturnValues[key3].queryResultPageTitle}
@@ -138,7 +139,7 @@ class Wikipedia extends React.Component {
             type="submit"
             onClick={this.useWikiSearchEngine}
           >
-            Search
+            Suche
           </button>
         </form>
         {WikiSearchResults}
