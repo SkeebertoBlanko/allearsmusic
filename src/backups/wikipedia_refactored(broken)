@@ -1,4 +1,17 @@
 import React, { useState, useContext } from "react";
+<<<<<<< HEAD:src/Wikipedia.js
+import { SearchContext } from "../store/Store";
+import "../App.css";
+
+function Wikipedia(props) {
+  const [query] = useContext(SearchContext);
+  const [WikiSearchTerms, setWikiSearchTerms] = useState(query); // useState("query");
+  const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
+
+  const useWikiSearchEngine = e => {
+    e.preventDefault();
+
+=======
 import "../App.css";
 import { SearchContext } from "../store/Store";
 
@@ -8,11 +21,12 @@ export function Wikipedia(props) {
   const [wikiSearchReturnValues, setwikiSearchReturnValues] = useState([]);
 
   const useWikiSearchEngine = e => {
+>>>>>>> cea5cb93584baa32cebffed35842fbc39c545962:src/backups/wikipedia_refactored(broken)
     setwikiSearchReturnValues([]);
 
-    let url = "https:en.wikipedia.org/w/api.php";
+    var url = "https:en.wikipedia.org/w/api.php";
 
-    let params = {
+    var params = {
       action: "query",
       list: "search",
       srsearch: WikiSearchTerms,
@@ -38,7 +52,11 @@ export function Wikipedia(props) {
             queryResultPageSnippet: response.query.search[key].snippet
           });
         }
+<<<<<<< HEAD:src/Wikipedia.js
+        setwikiSearchReturnValues(temp); // wikiSearchReturnValues(temp); --> not a function
+=======
         setwikiSearchReturnValues(temp);
+>>>>>>> cea5cb93584baa32cebffed35842fbc39c545962:src/backups/wikipedia_refactored(broken)
       })
       .then(function(response) {
         for (var key2 in wikiSearchReturnValues) {
@@ -53,6 +71,8 @@ export function Wikipedia(props) {
             .then(function(response) {
               page.queryResultPageFullURL =
                 response.query.pages[pageID].fullurl;
+
+              /*  page.queryResultPageFullUR.forceUpdate(); // pointerToThis.forceUpdate(); */
             });
         }
       });
@@ -62,10 +82,16 @@ export function Wikipedia(props) {
     setWikiSearchTerms(query);
   };
 
+  // ----
+
   let WikiSearchResults = [];
   let temp2 = [];
   for (var key3 in wikiSearchReturnValues) {
+<<<<<<< HEAD:src/Wikipedia.js
+    WikiSearchResults.push(
+=======
     temp2.push(
+>>>>>>> cea5cb93584baa32cebffed35842fbc39c545962:src/backups/wikipedia_refactored(broken)
       <div
         className="searchResultDiv border-2 border-black m-2 bg-gray-300 rounded"
         key={key3}
