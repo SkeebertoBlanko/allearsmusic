@@ -1,9 +1,9 @@
 import React from "react";
 import "../App.css";
 /**
- * @name yt-search_details.js (Youtube)
+ * @name yt-search_details.js (Youtube.js)
  * @author Schober Andreas
- * @const VideoDetail: creates the bigger Youtube video for display and show the video title
+ * @const VideoDetail: creates the bigger Youtube video for display and show the video title for the parent component Youtube
  * @return: the heading, the preview video aswell as the title of the video
  */
 const VideoDetail = props => {
@@ -23,9 +23,6 @@ const VideoDetail = props => {
 
   return (
     <div className="video-detail">
-      <h2 className="text-center mx-auto my-2 text-lg font-semibold tracking-widest">
-        Youtube:{" "}
-      </h2>
       <div className="embed-responsive embed-responsive-16by9">
         <iframe
           className="embed-responsive-itemn rounded"
