@@ -15,7 +15,7 @@ var cookieParser = require("cookie-parser");
 
 var client_id = "2e75e27ce57847949e6c464b779774b6"; // Your client id
 var client_secret = "d2688e450cb24953ac9031b973269d4b"; // Your secret
-var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
+var redirect_uri = "https://allearsmusicheads.netlify.com/callback"; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -110,7 +110,7 @@ app.get("/callback", function(req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(
-          "http://localhost:3000/#" +
+          "https://allearsmusicheads.netlify.com/#" +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
