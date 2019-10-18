@@ -46,7 +46,7 @@ function SpotifyOwn() {
     alert(
       "Du hast noch keinen Spotify-AccessToken hinterlegt, dieser wird für den Betrieb der Webseite benötigt! Du wirst nun auf zum Spotify-Login weitergeleitet"
     );
-    window.location.href = "http://localhost:8888/";
+    window.location.href = "https://clever-curie-c4705b.netlify.com";
   }
 
   /**
