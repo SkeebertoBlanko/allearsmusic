@@ -2,7 +2,7 @@
   "name": "allearsmusic",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://SkeebertoBlanko.github.io/allearsmusic",
+  "homepage": "/",
   "dependencies": {
     "@material-ui/core": "^4.5.0",
     "cors": "^2.8.5",
