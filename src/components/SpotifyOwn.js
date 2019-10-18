@@ -46,7 +46,7 @@ function SpotifyOwn() {
     alert(
       "Du hast noch keinen Spotify-AccessToken hinterlegt, dieser wird für den Betrieb der Webseite benötigt! Du wirst nun auf zum Spotify-Login weitergeleitet"
     );
-    window.location.href = "https://allearsmusicheads.netlify.com/";
+    window.location.href = "http://localhost:8888/";
   }
 
   /**
