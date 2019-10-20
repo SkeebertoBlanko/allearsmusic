@@ -70,7 +70,7 @@ app.get("/callback", function(req, res) {
 
   if (state === null || state !== storedState) {
     res.redirect(
-      "/#" +
+      "https://allearsmusicheads.netlify.com/#" +
         querystring.stringify({
           error: "state_mismatch"
         })
@@ -118,7 +118,7 @@ app.get("/callback", function(req, res) {
         );
       } else {
         res.redirect(
-          "/#" +
+          "https://allearsmusicheads.netlify.com/#" +
             querystring.stringify({
               error: "invalid_token"
             })
