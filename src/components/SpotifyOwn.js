@@ -133,7 +133,7 @@ function SpotifyOwn() {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(artist) || (
-                    <div className="w-1/2 mb-3 text-center p-1" key={index}>
+                    <div className="w-1/2 mb-3 text-center p-1 media flex" key={index}>
                       <a
                         href={artistURL}
                         alt={artistURL}
@@ -145,7 +145,7 @@ function SpotifyOwn() {
                             className="rounded mb-3 text-center mx-auto"
                             src={imgUrl}
                             alt={artist.name}
-                            width="80"
+                            width="100"
                           />
                         }
                         <p className="text-sm">{artist.name}</p>
@@ -178,7 +178,7 @@ function SpotifyOwn() {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(albums) || (
-                    <div className="w-1/2 mb-3 text-center p-1" key={index}>
+                    <div className="w-1/2 mb-3 text-center p-1 media flex" key={index}>
                       <a
                         href={albumURL}
                         alt={albumURL}
@@ -190,7 +190,7 @@ function SpotifyOwn() {
                             className="rounded mb-3 text-center mx-auto"
                             src={imgUrlAlbum}
                             alt={album.name}
-                            width="80"
+                            width="100"
                           />
                         }
                         <p className="text-sm">{album.name}</p>
