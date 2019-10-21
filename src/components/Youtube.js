@@ -49,7 +49,7 @@ class Yout extends Component {
 
   render() {
     return (
-      <div className="youtube bg-gray-100 rounded p-2 pb-6 m-4 border-2 border-black">
+      <div className="youtube bg-gray-100 rounded p-2 m-4 border-2 border-black">
         <h2>Youtube</h2>
         <form className="search-bar">
           <SearchBar
@@ -67,7 +67,7 @@ class Yout extends Component {
         <div
           className={
             this.state.isActive
-              ? "bg-gray-100 rounded p-2 m-4 border-2 border-black"
+              ? "bg-gray-100 rounded p-2 pb-6 m-4 border-2 border-black"
               : "hidden"
           }
         >
