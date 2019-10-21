@@ -133,7 +133,10 @@ function SpotifyOwn() {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(artist) || (
-                    <div className="w-1/2 mb-3 text-center p-1 media flex" key={index}>
+                    <div
+                      className="w-1/2 mb-3 text-center p-1 media flex"
+                      key={index}
+                    >
                       <a
                         href={artistURL}
                         alt={artistURL}
@@ -178,7 +181,10 @@ function SpotifyOwn() {
                   : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKquIPm6jfSmGvkb3yuOw9XsWEwpV7nKsJF9E1j67D8itgurl-";
                 return (
                   console.log(albums) || (
-                    <div className="w-1/2 mb-3 text-center p-1 media flex" key={index}>
+                    <div
+                      className="w-1/2 mb-3 text-center p-1 media flex"
+                      key={index}
+                    >
                       <a
                         href={albumURL}
                         alt={albumURL}

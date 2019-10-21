@@ -95,7 +95,7 @@ class Wikipedia extends React.Component {
    */
   render() {
     let WikiSearchResults = [];
-    console.log("wikiSearchReturnValues: " + this.state.wikiSearchReturnValues);
+    /*  console.log("wikiSearchReturnValues: " + this.state.wikiSearchReturnValues); */
 
     for (var key3 in this.state.wikiSearchReturnValues) {
       WikiSearchResults.push(
