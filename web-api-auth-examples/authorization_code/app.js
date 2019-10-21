@@ -70,7 +70,7 @@ app.get("/callback", function(req, res) {
 
   if (state === null || state !== storedState) {
     res.redirect(
-      "https://allearsmusicheads.netlify.com/#" +
+      "http://localhost:3000/#" +
         querystring.stringify({
           error: "state_mismatch"
         })
