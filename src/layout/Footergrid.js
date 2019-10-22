@@ -12,7 +12,9 @@ const Footergrid = () => {
   return (
     <>
       <div className="Footer mt-10 text-center">
+        <hr className="hr-white" />
         <hr />
+        <hr className="hr-white mb-6" />
         <p>
           vocational school project "AllEarsMusicHeads"
           <br />

@@ -14,7 +14,9 @@ const Headergrid = () => {
       <div className="Header m-3 tracking-widest">
         <h1>AllEarsMusicHeads</h1>
         <p>Searchengine for Spotify, Youtube and Wikipedia</p>
+        <hr className="hr-white" />
         <hr />
+        <hr className="hr-white mb-6" />
       </div>
     </>
   );
