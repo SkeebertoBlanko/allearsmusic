@@ -10,7 +10,7 @@ import VideoDetail from "./yt-video_details";
  * @return: all needed components and found search results
  * @const API_KEY for Youtube
  */
-const API_KEY = "AIzaSyDgM3087-KiceH8EbAgdmsw311gmMBfVwk";
+const API_KEY = GET_API_KEY_FROM_GOOGLE;
 class Yout extends Component {
   constructor(props) {
     super(props);
