@@ -66,3 +66,47 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+--
+--
+Software: Editor (VS-Code)
+Web/Datenbankserver (XAMPP)
+Datenbankverwaltung (MySQL Workbench) -> Client only installtion ausreichend
+	nutze PHP-MyAdmin um Database- und XAMPP-Server zu prüfen
+	Falls Probleme mit der aktuellen Workbench-Version, dann nutze eine ältere
+
+Dokumentation in Word erstellen:
+Warum wurde die WSoftware gewählt? -> evtl. Probleme bei der Installtion
+Screenshot der Datenbanktabelle
+Forard Engineering (WorkBench) für MySQL-Statements
+
+Datenbanken:
+Normalisierungsformen gewüscht; nicht zwingend erforderlich -> erklären können warum die Wahl so getroffen wurde
+
+Relationen einer Datenbank:
+1:1
+1:n
+n:m
+
+MySQL-Workbench Workflow:
+New Modell -> Add table
+Tabellen erstellen ohne Fremdschlüssel
+-> Add Diagramm: Tabellen reinziehen und Fremdschlüssel erstellen
+-> Forward Engineering für SQL-Befehle (nötig für Dokumentation)
+	-bei einem Syntax Fehler:
+	Öffne PHPMyAdmin gehe auf neue Datenbank und füge den Code dort ein, die Syntax Highlight erleichtert die Fehlersuche
+neue Datensätze am einfachsten über PHPMyAdmin einfügen
+
+bisher wurden nur lesende MySQL/PHP Befehle benötigt
+
+
+HTML/CSS nicht wirklich wichtig -> ausschlaggebend ist die Funktionalität
+HTML-Grundgerüst beachten !
+<form action="get/post"> (get schickt Parameter in der URL mit; post nicht -> daher ist post zu bevorzugen)
+
+In der folgenden SQL-Abfrage sind 90% des benötigten Wissens enthalten:
+
+SELECT ausleihen.*, buecher.*, personen.* FROM 'ausleihen'
+INNER JOIN buecher ON ausleihen.Buecher_idBuecher = buecher.idBuecher
+INNER JOIN personen ON ausleihen.Personen_idPersonen = personen.idPersonen
+WHERE ausleihen.RueckgabeDatum IS NULL
+
