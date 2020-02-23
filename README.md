@@ -102,7 +102,7 @@ bisher wurden nur lesende MySQL/PHP Befehle benötigt
 HTML/CSS nicht wirklich wichtig -> ausschlaggebend ist die Funktionalität
 HTML-Grundgerüst beachten !
 <form action="get/post"> (get schickt Parameter in der URL mit; post nicht -> daher ist post zu bevorzugen)
-
+ 
 In der folgenden SQL-Abfrage sind 90% des benötigten Wissens enthalten:
 
 SELECT ausleihen.*, buecher.*, personen.* FROM 'ausleihen'
